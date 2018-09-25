@@ -1,0 +1,165 @@
+<html>
+    <head>
+        <title> Mail Log </title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="addRecord.css">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="home"><a href="" ng-click="goToHome();" ng-controller="locationCtrl"><img src="/assets/icons/home-btn.png"></img></a></li>
+                    <li class="lgout"><a href="" ng-click="logout_user();" target="_blank"><img src="/assets/icons/logout-btn-active.png"></a></li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+
+  <br>
+  <div class="wrapper">
+    <div class="logo"><img src="/assets/pics/dashboard-logo.png"></img></div>
+    <div class="add-rec-btn"><button ng-click="goToRecordForm()" ng-controller="locationCtrl"><img src="/assets/icons/add-record-btn.png"></img></button></div>
+    <div class="topnav search">
+      <input type="text" placeholder="Search.." class="form-control" ng-model="search"><button class="search-btn"><img src="/assets/icons/search-btn.png"></img></button>
+    </div>
+    </br>
+    <div class="wrapper">
+    <div class="logo"><img src="/assets/pics/dashboard-logo.png"></img></div>
+    <div class="add-rec-btn rec_space"><button ng-click="goToRecordForm()" ng-controller="locationCtrl"><img src="/assets/icons/add-record-btn.png"></img></button></div>
+    <div class="topnav search">
+      <input type="text" placeholder="Search.." class="form-control" ng-model="search">
+    </div>
+    </br>
+    <div class="max-res">
+      <div class="dropdown">
+        <span>Maximum Results:</span> <select ng-model="val.selectedvalue" ng-change="limit_rec()" ng-options="x for x in values">
+          <option>--</option>
+        </select>
+      </div>
+      </div>
+    <table style="width:90%" class="table table-striped table-bordered table-hover">
+      <tr>
+        <th>Mail ID</th>
+        <th>Sender</th> 
+        <th>Contents</th>
+        <th>Actions </th>
+        <th>Logged by</th>
+        <th>Reciceved date</th>
+      </tr>
+      <tr ng-repeat="x in rec.records | filter : search">
+        <td>{{x.id}}</td>
+        <td>{{x.fromperson}}</td>
+        <td>{{x.description}}</td>
+        <td>{{x.raction}}</td>
+        <td>{{x.loggedby}}</td>
+        <td>{{x.sdate}}</td>
+      </tr>
+    </table>
+    <div class="page-nav">
+      <a>Next Page>></a>
+    </div>
+  </div>
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Helvetica');
+      * {
+          margin: 0;
+          padding: 0;
+          border: 0;
+          outline: 0;
+          font-size: 100%;
+          vertical-align: baseline;
+      }
+    html{
+          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+          height: 100%;
+          min-height: 100%;
+          overflow:hidden;
+      }
+    body{
+        width: 100%;
+        height: 100%;
+        background-image: url(/assets/pics/dashboard-bg.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        font-family: roboto;
+        min-height: 100%;
+        overflow:auto;
+        z-index: -1;
+    }
+    .navbar{
+        background-color:white;
+        border:none;
+    }
+    .nav .home{
+        margin-top:6px;
+        border-right: 1px solid rgba(28,78,128,0.16);
+        opacity:0.5;
+    }
+    .home:hover{
+        opacity:1;
+    }
+    .nav .admin{
+        margin-top:4px;
+        border-right: 1px solid rgba(28,78,128,0.16);
+        opacity:0.5;
+    }
+    .admin:hover{
+        opacity:1;
+    }
+    .nav .lgout{
+        margin-top:3px;
+        opacity:0.5;
+    }
+    .lgout:hover{
+        opacity:1;
+    }
+    .nav{
+        margin-left:60px;
+    }
+    .search input{
+      width:30%;
+      background-color:transparent;
+    }
+    .search-btn{
+      margin-left:31%;
+      margin-top:-38px;
+    }
+    .search{
+      margin-left:64px;
+    }
+    .wrapper{
+      margin-top:5%;
+    }
+    .wrapper .add-rec-btn{
+      float:right;
+      margin-top:-80px;
+      margin-right:72px;
+    }
+    .logo{
+      margin-bottom:80px;
+      margin-left:64px;
+    }
+    .max-res{
+      margin-left:64px;
+      margin-bottom:32px;
+      margin-top:30px;
+    }
+    table{
+      margin-left:64px;
+      background-color:white;
+    }
+    .page-nav{
+      margin-left:64px;
+    }
+    .page-nav:hover{
+      cursor:pointer;
+    }
+</style>

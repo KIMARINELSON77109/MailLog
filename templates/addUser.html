@@ -1,0 +1,168 @@
+<html>
+        <head>
+            <title> Mail Log </title>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+            <link rel="stylesheet" href="addRecord.css">
+            
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        </head>
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="home"><a href="" ng-click="goToHome();" ng-controller="locationCtrl"><img src="/assets/icons/home-btn.png"></img></a></li>
+                    <li class="lgout"><a href="" ng-click="logout_user();" target="_blank"><img src="/assets/icons/logout-btn-active.png"></a></li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </div>
+    
+    <br>
+    <div class="form-bdy">
+        <form ng-submit="addUserData()">
+            <div class="alert-group">
+                <!-- error reporting goes here -->
+                <div class="alert alert-danger">
+                  <strong>Oh snap!</strong> Change a few things up and try submitting again.
+                </div>
+        	</div>
+        	<h1 class="add-txt">ADD A NEW USER</h1>
+             <div class="form-group">
+                 <label for="firstname">First Name:</label><br>
+                 <input type="text" ng-model= "firstname" id= "firstname" class="form-control input-lg"/>
+                 <span class="error" id="fname_error"></span>
+             </div>
+             
+             <div class="form-group">
+                 <label for="lastname">Last Name:</label><br>
+                 <input type="text" ng-model= "lastname" id= "lastname" class="form-control input-lg"/>
+                 <span class="error" id="lname_error"></span>
+             </div>
+             
+             <div class="form-group">
+                 <label for="idNumber">ID Number:</label><br>
+                 <input type="text" ng-model= "idNumber" id= "idNumber" class="form-control input-lg"/>
+                 <span  class="error" id="idnum_error"></span>
+             </div>
+             
+             <div class="form-group">
+                 <label for="lastname">Department:</label><br>
+                 <input type="text" ng-model= "Department" id= "Department" class="form-control input-lg"/>
+                 <span class="error" id="department_error"></span>
+             </div>
+             
+             <div class="form-group">
+                 <label for="lastname">Role:</label><br>
+                 <input type="text" ng-model= "role" id= "role" class="form-control input-lg"/>
+                 <span class="error" id="role_error"></span>
+             </div>
+    
+            
+             <div class="add-btn">
+                 <input type="submit" class="btn btn-block btn-lg btn-primary" id = "register" value="ADD USER"/>
+             </div>
+        </form>
+    </div>
+</html>
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Helvetica');
+      * {
+          margin: 0;
+          padding: 0;
+          border: 0;
+          outline: 0;
+          font-size: 100%;
+          vertical-align: baseline;
+      }
+    html{
+          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+          height: 100%;
+          min-height: 100%;
+          overflow:hidden;
+      }
+    body{
+        /*background-color:purple;*/
+        width: 100%;
+        height: 100%;
+        background-image: url(/assets/pics/dashboard-bg.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        font-family: roboto;
+        min-height: 100%;
+        overflow:auto;
+        z-index: -1;
+    }
+    .navbar{
+        background-color:white;
+        border:none;
+    }
+    .form-group input{
+        background-color:transparent;
+        border-radius:4px;
+        border: 1px solid #CCCCCC;
+        padding:5px;
+        width:50%;
+        margin-bottom:8px;
+    }
+    .nav .search{
+        margin-top:8px;
+        border-right: 1px solid rgba(28,78,128,0.16);
+        opacity:0.5;
+    }
+    .search:hover{
+        opacity:1;
+    }
+    .nav .admin{
+        margin-top:4px;
+        border-right: 1px solid rgba(28,78,128,0.16);
+        opacity:0.5;
+    }
+    .admin:hover{
+        opacity:1;
+    }
+    .nav .lgout{
+        margin-top:3px;
+        opacity:0.5;
+    }
+    .lgout:hover{
+        opacity:1;
+    }
+    .nav{
+        margin-left:60px;
+    }
+    label{
+        font-family: HelveticaNeue-Medium;
+        font-size: 16px;
+        color: #1C4E80;
+        letter-spacing: 0;
+        font-weight:10;
+        margin-left:0%;
+        text-align:left;
+        margin-bottom:4px;
+    }
+    .add-btn{
+        width:50%;
+        margin-top:16px;
+    }
+    .add-txt{
+        font-family: HelveticaNeue-Bold;
+        font-size: 24px;
+        color: #1C4E80;
+        letter-spacing: 0;
+        margin-left:108px;
+        margin-bottom:32px;
+    }
+    .alert-group{
+        width:50%;
+    }
+    .form-bdy{
+        margin-top:10%;
+        margin-left:35%;
+    }
+</style>
