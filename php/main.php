@@ -36,11 +36,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     }
     
 //#############################add a user to db and response saying user is added################################################
-    if (isset($uname) && isset($empFname) && isset($empLname) && !isset($login))
+    $idNumber = $_POST[""];
+    $empFname = $_POST[""];
+    $empLname = $_POST[""];
+    if (isset($idNumber) && isset($empFname) && isset($empLname) && !isset($login))
     {
         $empFname = check_input($empFname);$empLname = check_input($empLname);$uname = check_input($uname);
         
-        $sql = "INSERT INTO Employee(firstname, lastname, username, password_digest) VALUES('$empFname', '$empLname', '$uname', '$pword');";
+        $sql = "INSERT INTO Person(firstname, lastname, username, password_digest) VALUES('$empFname', '$empLname', '$uname', '$pword');";
         $res = $db->query($sql);
         
         if(res == true)

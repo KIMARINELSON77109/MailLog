@@ -99,10 +99,11 @@ app.controller("recordCtrl", function($scope, $http, $location){
     });
           
   }
+  $scope.user = {};
   $scope.addUserData = function(){
     $http({
       method: "POST",
-      url: "../php/main.php",
+      url: "https://apps.mona.uwi.edu/wservice/userinfo.php",
       headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},
       transformRequest: function(obj) {
         var str = [];
@@ -110,14 +111,12 @@ app.controller("recordCtrl", function($scope, $http, $location){
         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
         return str.join("&");
     },
-     data: {}
+     data: {idnumber: $scope.idnumber},
     }).then(function (response) {
-          $scope.recordData = response.data;
-          //$location.path("/dashboard");
-          console.log($scope.recordData);
+          if(response.data.httpcode == 200){
+            console.log($scope.data.message.firstname);
+          }
         });
-      // 'firstname': $scope.firstname, 'lastname': $scope.lastname,
-      // 'username': $scope.username
   }
   $http({
         method: "POST",
@@ -132,7 +131,7 @@ app.controller("recordCtrl", function($scope, $http, $location){
         data: {numRec:20},
         }).then(function (response) {
         $scope.rec.records = response.data;
-        console.log($scope.rec.records);
+        //console.log($scope.rec.records);
         });
   $scope.logout_user = function(){
      $http({
@@ -143,7 +142,7 @@ app.controller("recordCtrl", function($scope, $http, $location){
     if(response.data === "logged out"){
       $location.path("/");
     }
-      console.log(response.data);
+      //console.log(response.data);
     });
   }
   $scope.values = [5, 10, 20];
@@ -162,7 +161,7 @@ app.controller("recordCtrl", function($scope, $http, $location){
     data: {numRec: $scope.val.selectedvalue},
     }).then(function (response) {
         $scope.rec.records = response.data;
-        console.log($scope.rec.records);
+        //console.log($scope.rec.records);
         });
    }
 });

@@ -5,7 +5,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-            <link rel="stylesheet" href="addRecord.css">
+            <!--<link rel="stylesheet" href="addRecord.css">-->
             
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -32,33 +32,33 @@
                 </div>
         	</div>
         	<h1 class="add-txt">ADD A NEW USER</h1>
-             <div class="form-group">
-                 <label for="firstname">First Name:</label><br>
-                 <input type="text" ng-model= "firstname" id= "firstname" class="form-control input-lg"/>
-                 <span class="error" id="fname_error"></span>
-             </div>
+             <!--<div class="form-group">-->
+             <!--    <label for="firstname">First Name:</label><br>-->
+             <!--    <input type="text" ng-model= "user.firstname" id= "firstname" class="form-control input-lg"/>-->
+             <!--    <span class="error" id="fname_error"></span>-->
+             <!--</div>-->
              
-             <div class="form-group">
-                 <label for="lastname">Last Name:</label><br>
-                 <input type="text" ng-model= "lastname" id= "lastname" class="form-control input-lg"/>
-                 <span class="error" id="lname_error"></span>
-             </div>
+             <!--<div class="form-group">-->
+             <!--    <label for="lastname">Last Name:</label><br>-->
+             <!--    <input type="text" ng-model= "user.lastname" id= "lastname" class="form-control input-lg"/>-->
+             <!--    <span class="error" id="lname_error"></span>-->
+             <!--</div>-->
              
              <div class="form-group">
                  <label for="idNumber">ID Number:</label><br>
-                 <input type="text" ng-model= "idNumber" id= "idNumber" class="form-control input-lg"/>
+                 <input type="text" ng-model= "idnumber" id= "idnumber" class="form-control input-lg"/>
                  <span  class="error" id="idnum_error"></span>
              </div>
              
-             <div class="form-group">
-                 <label for="lastname">Department:</label><br>
-                 <input type="text" ng-model= "Department" id= "Department" class="form-control input-lg"/>
-                 <span class="error" id="department_error"></span>
-             </div>
+             <!--<div class="form-group">-->
+             <!--    <label for="lastname">Department:</label><br>-->
+             <!--    <input type="text" ng-model= "user.department" id= "Department" class="form-control input-lg"/>-->
+             <!--    <span class="error" id="department_error"></span>-->
+             <!--</div>-->
              
              <div class="form-group">
                  <label for="lastname">Role:</label><br>
-                 <input type="text" ng-model= "role" id= "role" class="form-control input-lg"/>
+                 <input type="text" ng-model= "user.role" id= "role" class="form-control input-lg" placeholder="admin or guest" />
                  <span class="error" id="role_error"></span>
              </div>
     

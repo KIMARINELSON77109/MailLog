@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title> MailLog Record </title>
+        <title> Mail Log </title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
@@ -13,7 +13,6 @@
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="collapse navbar-collapse">
-                <img src="/assets/icons/top-nav-logo.png" class="top-nav-logo"></img>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="home"><a href="" ng-click="goToHome();" ng-controller="locationCtrl"><img src="/assets/icons/home-btn.png"></img></a></li>
                     <li class="addUser"><a href=""><img src="/assets/icons/addUser-btn-active.png"></img></a></li>
@@ -128,20 +127,20 @@
         margin-left:0%;
         text-align:left;
     }
-    .nav .home{
-        margin-top:6px;
+    .nav .search{
+        margin-top:8px;
         border-right: 1px solid rgba(28,78,128,0.16);
         opacity:0.5;
     }
-    .home:hover{
+    .search:hover{
         opacity:1;
     }
-    .nav .addUser{
+    .nav .admin{
         margin-top:4px;
         border-right: 1px solid rgba(28,78,128,0.16);
         opacity:0.5;
     }
-    .addUser:hover{
+    .admin:hover{
         opacity:1;
     }
     .nav .lgout{
@@ -156,9 +155,5 @@
     }
     .alert-group{
         width:50%;
-    }
-    .top-nav-logo{
-        margin-top:8px;
-        padding:0;
     }
 </style>
