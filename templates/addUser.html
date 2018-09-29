@@ -24,49 +24,36 @@
     
     <br>
     <div class="form-bdy">
-        <form ng-submit="addUserData()">
+        <form name="userForm" ng-submit="addUserData()">
             <div class="alert-group">
                 <!-- error reporting goes here -->
                 <div class="alert alert-danger">
-                  <strong>Oh snap!</strong> Change a few things up and try submitting again.
+                  <!--<strong>Oh snap!</strong> Change a few things up and try submitting again.-->
                 </div>
         	</div>
         	<h1 class="add-txt">ADD A NEW USER</h1>
-             <!--<div class="form-group">-->
-             <!--    <label for="firstname">First Name:</label><br>-->
-             <!--    <input type="text" ng-model= "user.firstname" id= "firstname" class="form-control input-lg"/>-->
-             <!--    <span class="error" id="fname_error"></span>-->
-             <!--</div>-->
              
-             <!--<div class="form-group">-->
-             <!--    <label for="lastname">Last Name:</label><br>-->
-             <!--    <input type="text" ng-model= "user.lastname" id= "lastname" class="form-control input-lg"/>-->
-             <!--    <span class="error" id="lname_error"></span>-->
-             <!--</div>-->
-             
-             <div class="form-group">
-                 <label for="idNumber">ID Number:</label><br>
-                 <input type="text" ng-model= "idnumber" id= "idnumber" class="form-control input-lg"/>
-                 <span  class="error" id="idnum_error"></span>
+             <div class="form-group" ng-class= "{'has-error':true}">
+                 <label for="idNumber" class="control-label">ID Number:</label><br>
+                 <input type="number" name="idNumber" ng-model= "user.idnumber" id= "idnumber" class="form-control input-lg" required/>
+                 <span  class="help-block" id="idnum_error"></span>
+                 <pre>{{userForm.idNumber.$valid}}</pre>
              </div>
              
-             <!--<div class="form-group">-->
-             <!--    <label for="lastname">Department:</label><br>-->
-             <!--    <input type="text" ng-model= "user.department" id= "Department" class="form-control input-lg"/>-->
-             <!--    <span class="error" id="department_error"></span>-->
-             <!--</div>-->
              
              <div class="form-group">
                  <label for="lastname">Role:</label><br>
-                 <input type="text" ng-model= "user.role" id= "role" class="form-control input-lg" placeholder="admin or guest" />
+                 <select ng-model="user.selectedrole" ng-options="x for x in roles" class="select-form input-lg">
+                  <option>--</option>
+                 </select>
                  <span class="error" id="role_error"></span>
              </div>
-    
             
              <div class="add-btn">
                  <input type="submit" class="btn btn-block btn-lg btn-primary" id = "register" value="ADD USER"/>
              </div>
         </form>
+        <pre>{{userForm | json}}</pre>
     </div>
 </html>
 <style>
@@ -110,20 +97,20 @@
         width:50%;
         margin-bottom:8px;
     }
-    .nav .search{
-        margin-top:8px;
+    .nav .home{
+        margin-top:6px;
         border-right: 1px solid rgba(28,78,128,0.16);
         opacity:0.5;
     }
-    .search:hover{
+    .home:hover{
         opacity:1;
     }
-    .nav .admin{
-        margin-top:4px;
+    .nav .addUser{
+        margin-top:6px;
         border-right: 1px solid rgba(28,78,128,0.16);
         opacity:0.5;
     }
-    .admin:hover{
+    .addUser:hover{
         opacity:1;
     }
     .nav .lgout{
@@ -164,5 +151,14 @@
     .form-bdy{
         margin-top:10%;
         margin-left:35%;
+    }
+    .select-form
+    {
+      display: block;
+      width: 50%;
+      background-color: transparent;
+      border: 1px solid #CCCCCC;
+      .box-shadow(inset 0 1px 1px rgba(0,0,0,.075));
+      .transition(~"border-color ease-in-out .15s, box-shadow 
     }
 </style>

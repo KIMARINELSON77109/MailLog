@@ -1,19 +1,22 @@
 <head>
     <title> MailLog </title>
-    <link rel="stylesheet" href="css/login.css">
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-  <form ng-submit = "loginform()">
+  <form name="loginForm" ng-submit = "loginform()">
     <div class="container">
       <div>
         <img src="/assets/pics/Login-Logo.png"></img>
       </div>
       <h3 class="login-title">Login</h3>
-      <label for="uname"></label>
-      <input class="form-field" id="id-field" type="text" placeholder="ID" ng-model ="log_in.idnumber" required><br>
-  
+      <div class="form-group">
+        <label for="uname" class="control-label"></label>
+        <input class="form-field" id="id-field" type="number" name="idNumber" placeholder="ID" ng-model ="log_in.idnumber" required><br>
+      </div>
+      
+      
       <label for="psw"></label>
       <input class="form-field" id="psw-field" type="password" placeholder="Password" ng-model="log_in.password" required><br>
       
@@ -43,7 +46,7 @@
       vertical-align: baseline;
   }
   html {
-      font-family: font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       height: 100%;
       min-height: 100%;
       overflow:hidden;

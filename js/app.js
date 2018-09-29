@@ -40,8 +40,15 @@ app.controller("recordCtrl", function($scope, $http, $location){
     data: {sender: $scope.insert_d.sender, action: $scope.insert_d.action, content: $scope.insert_d.content,
       sdate: $scope.insert_d.sdate},
     }).then(function (response) {
+      if(response.data.message == "success")
+      {
           $scope.recordData = response.data;
-          console.log($scope.recordData);
+          $scope.recval = true;
+      }
+      else
+      {
+        $scope.recval = false;
+      }
     }); 
   }
   $scope.log_in = {};
@@ -99,24 +106,46 @@ app.controller("recordCtrl", function($scope, $http, $location){
     });
           
   }
+  $scope.roles = ["admin","guest"];
   $scope.user = {};
   $scope.addUserData = function(){
-    $http({
-      method: "POST",
-      url: "https://apps.mona.uwi.edu/wservice/userinfo.php",
-      headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},
-      transformRequest: function(obj) {
-        var str = [];
-        for(var p in obj)
-        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-        return str.join("&");
-    },
-     data: {idnumber: $scope.idnumber},
-    }).then(function (response) {
-          if(response.data.httpcode == 200){
-            console.log($scope.data.message.firstname);
-          }
-        });
+      $http({
+        method: "POST",
+        url: "https://apps.mona.uwi.edu/wservice/userinfo.php",
+        headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},
+        transformRequest: function(obj) {
+          var str = [];
+          for(var p in obj)
+          str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+          return str.join("&");
+      },
+       data: {idnumber: $scope.user.idnumber},
+      }).then(function (response) {
+            if(response.data.httpcode == 200)
+            {
+              $http({
+                  method: "POST",
+                  url: "../php/addUser.php",
+                  headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},
+                  transformRequest: function(obj) {
+                      var str = [];
+                      for(var p in obj)
+                      str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                      return str.join("&");
+                  },
+                  data: {idnumber : response.data.message.idnumber,department: response.data.message.department,
+                        email : response.data.message.email, firstname: response.data.message.firstname, 
+                        lastname: response.data.message.lastname, role: $scope.user.selectedrole}
+              }).then(function(response) {
+                  $scope.AdduserResponse = response.data.message;
+                  $scope.userval = true;
+              })
+            }
+            else
+            {
+              $scope.userval = false;
+            }
+          });
   }
   $http({
         method: "POST",
@@ -172,6 +201,9 @@ app.controller("locationCtrl", function($scope,$location){
   }
    $scope.goToHome = function(){
     $location.path("/admindash");
+  }
+  $scope.dashboard = function(){
+    $location.path("/dashboard");
   }
   $scope.goToAddUser = function(){
     $location.path("/addUser");

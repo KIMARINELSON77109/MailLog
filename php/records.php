@@ -9,7 +9,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     
     //###############################get logged records from db ###################################
     $numOfRecord = $_POST["numRec"];
-    //echo $numOfRecord;
     if(isset($numOfRecord))
     {
             $sql1 = "SELECT * FROM Maillog ORDER BY id desc LIMIT $numOfRecord";

@@ -88,3 +88,4 @@
 [24-Sep-2018 21:17:58 UTC] PHP Fatal error:  Call to a member function fetch() on a non-object in /home/ubuntu/workspace/php/main.php on line 71
 [24-Sep-2018 21:17:58 UTC] PHP Stack trace:
 [24-Sep-2018 21:17:58 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/main.php:0
+[27-Sep-2018 17:37:55 UTC] PHP Parse error:  syntax error, unexpected '"' in /home/ubuntu/workspace/php/addUser.php on line 23

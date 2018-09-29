@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
 {
     $ID_num = $_POST['idnumber'];
     
-    if(isset($ID_num)){
+    if(isset($ID_num) && !isset($role)){
         $sql = "SELECT * FROM Person WHERE idNumber = '$ID_num'";
         $stmt = $db->query($sql);
         $res = $stmt->fetch();
@@ -32,23 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         {
             $data= ['message' => 'No User Found'];
             echo json_encode($data);
-        }
-    }
-    
-//#############################add a user to db and response saying user is added################################################
-    $idNumber = $_POST[""];
-    $empFname = $_POST[""];
-    $empLname = $_POST[""];
-    if (isset($idNumber) && isset($empFname) && isset($empLname) && !isset($login))
-    {
-        $empFname = check_input($empFname);$empLname = check_input($empLname);$uname = check_input($uname);
-        
-        $sql = "INSERT INTO Person(firstname, lastname, username, password_digest) VALUES('$empFname', '$empLname', '$uname', '$pword');";
-        $res = $db->query($sql);
-        
-        if(res == true)
-        {
-            echo 'Successfully Added User';
         }
     }
     
@@ -77,12 +60,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         {
             $sql = "INSERT INTO Maillog (description, fromperson, loggedby, raction, rdate, sdate ) VALUES('$mailContent','$senderName','$fullname','$action', '$date_logged','$sDate');";
             $db->exec($sql);
-            echo "Record successful inserted";
+            
+            $data = ['message' => "success"];
         }
-        else{
-            echo "nah work";
-            echo $id;
+        else
+        {
+            $data = ['message' => "fail"];
         }
+        echo json_encode($data);
         
         
        /* $sql = "INSERT INTO Maillog (description, fromperson, logged_by, raction, rdate, sdate ) VALUES('$mailContent','$senderName',$fullname','$action', '$date_logged','$sDate');";

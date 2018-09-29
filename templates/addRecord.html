@@ -15,7 +15,6 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="home"><a href="" ng-click="goToHome();" ng-controller="locationCtrl"><img src="/assets/icons/home-btn.png"></img></a></li>
-                    <li class="addUser"><a href=""><img src="/assets/icons/addUser-btn-active.png"></img></a></li>
                     <li class="lgout"><a href="" ng-click="logout_user();" target="_blank"><img src="/assets/icons/logout-btn-active.png"></a></li>
                 </ul>
             </div>
@@ -26,33 +25,37 @@
     <br>
     <div class="form-bdy">
         <form ng-submit = "insertData()">
-                <div class="alert-group">
-                    <!-- error reporting goes here -->
-                    <div class="alert alert-success message" id="log-msg">
-                      <strong>Well Done!</strong> You successfully added a new record.
-                    </div>
-            	</div>
+                <div ng-if="recval==true" class="alert-group">
+                <div class="alert alert-success">
+                    <p>Successfully added record</p>
+                </div>
+        	</div>
+        	<div ng-if="recval==false" class="alert-group">
+                <div class="alert alert-danger">
+                    <p>Something went wrong! Ensure that all fields are valid</p>
+                </div>
+        	</div>
             	<h1 class="add-txt">ADD A NEW RECORD</h1>
                 <div class="form-group">
                 <label for="sender">Sender:</label><br>
-            	<input type="text" ng-model="insert_d.sender" id="sender" class="form-control input-lg"/>
+            	<input type="text" ng-model="insert_d.sender" id="sender" class="form-control input-lg" required/>
             	</div>
                 <br />
                 <br />
                 <div class="form-group">
                 <label for="mail-content">Mail Content:</label><br>
-                <input ng-model="insert_d.content" id="body" class="form-control input-lg"/>
+                <input ng-model="insert_d.content" id="body" class="form-control input-lg" required/>
                 </div>
                 <br />
                 <br />
                 <div class="form-group">
                 <label for="action">Action:</label><br>
-                <input type="text" ng-model="insert_d.action" id="action" class="form-control input-lg"/>
+                <input type="text" ng-model="insert_d.action" id="action" class="form-control input-lg" required/>
                 </div>
                 <br />
                 <div class="form-group">
                 <label for="date-rec">Date Received:</label><br>
-                <input type="text" ng-model="insert_d.sdate" class="form-control input-lg" placeholder="MM/DD/YYY"/>
+                <input type="text" ng-model="insert_d.sdate" class="form-control input-lg" placeholder="MM-DD-YYYY" required/>
                 </div>
                 <div class="add-btn">
                 <button class="btn btn-block btn-lg btn-primary" type="submit" id="submit-msg">ADD RECORD</button>
@@ -127,20 +130,20 @@
         margin-left:0%;
         text-align:left;
     }
-    .nav .search{
-        margin-top:8px;
-        border-right: 1px solid rgba(28,78,128,0.16);
-        opacity:0.5;
-    }
-    .search:hover{
-        opacity:1;
-    }
-    .nav .admin{
+    .nav .home{
         margin-top:4px;
         border-right: 1px solid rgba(28,78,128,0.16);
         opacity:0.5;
     }
-    .admin:hover{
+    .home:hover{
+        opacity:1;
+    }
+    .nav .addUser{
+        margin-top:6px;
+        border-right: 1px solid rgba(28,78,128,0.16);
+        opacity:0.5;
+    }
+    .addUser:hover{
         opacity:1;
     }
     .nav .lgout{
