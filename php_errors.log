@@ -89,3 +89,18 @@
 [24-Sep-2018 21:17:58 UTC] PHP Stack trace:
 [24-Sep-2018 21:17:58 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/main.php:0
 [27-Sep-2018 17:37:55 UTC] PHP Parse error:  syntax error, unexpected '"' in /home/ubuntu/workspace/php/addUser.php on line 23
+[29-Sep-2018 05:01:14 UTC] PHP Fatal error:  Call to a member function fetch() on a non-object in /home/ubuntu/workspace/php/addUser.php on line 22
+[29-Sep-2018 05:01:14 UTC] PHP Stack trace:
+[29-Sep-2018 05:01:14 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/addUser.php:0
+[29-Sep-2018 05:13:57 UTC] PHP Fatal error:  Call to a member function fetch() on a non-object in /home/ubuntu/workspace/php/addUser.php on line 22
+[29-Sep-2018 05:13:57 UTC] PHP Stack trace:
+[29-Sep-2018 05:13:57 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/addUser.php:0
+[29-Sep-2018 05:13:59 UTC] PHP Fatal error:  Call to a member function fetch() on a non-object in /home/ubuntu/workspace/php/addUser.php on line 22
+[29-Sep-2018 05:13:59 UTC] PHP Stack trace:
+[29-Sep-2018 05:13:59 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/addUser.php:0
+[29-Sep-2018 05:18:05 UTC] PHP Fatal error:  Call to a member function fetch() on a non-object in /home/ubuntu/workspace/php/addUser.php on line 22
+[29-Sep-2018 05:18:05 UTC] PHP Stack trace:
+[29-Sep-2018 05:18:05 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/addUser.php:0
+[29-Sep-2018 05:18:15 UTC] PHP Fatal error:  Call to a member function fetch() on a non-object in /home/ubuntu/workspace/php/addUser.php on line 22
+[29-Sep-2018 05:18:15 UTC] PHP Stack trace:
+[29-Sep-2018 05:18:15 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/addUser.php:0

@@ -18,17 +18,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     if (isset($idNumber) && isset($empFname) && isset($empLname) && isset($role) &&
     isset($email) && isset($department))
     {
+        $stmt = $db->query("SELECT * FROM Person WHERE idNumber = '$idNumber'");
+        $res = $stmt->fetch();
         
-        $sql = "INSERT INTO Person(accountType,department,emailAddress,firstName,fullName,idNumber,lastName, password, photoURL, role) VALUES('activeDirectory','$department','$email', '$empFname', '$empFname' '$empLname','$idNumber','$empLname', '','','$role');";
-        $res = $db->query($sql);
-        
-        if(res == true)
+        if($res == null)
         {
-            $data= ['message' => true];
+            $sql1 = "INSERT INTO Person(accountType,department,emailAddress,firstName,fullName,idNumber,lastName, password, photoURL, role) VALUES('activeDirectory','$department','$email', '$empFname', '$empFname' '$empLname','$idNumber','$empLname', '','','$role');";
+            $res_ = $db->query($sql);
+            
+            if($res_ == true)
+            {
+                $data= ['message' => true];
+            }
+            else
+            {
+                $data= ['message' => 'Something went Wrong'];
+            }
         }
         else
         {
-             $data= ['message' => 'Something went Wrong'];
+            $data= ['message' => "duplicate"];
         }
         echo json_encode($data);
     }

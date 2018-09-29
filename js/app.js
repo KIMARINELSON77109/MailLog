@@ -44,10 +44,18 @@ app.controller("recordCtrl", function($scope, $http, $location){
       {
           $scope.recordData = response.data;
           $scope.recval = true;
+          $scope.insert_d.sender = '';
+          $scope.insert_d.action = '';
+          $scope.insert_d.content = '';
+          $scope.insert_d.sdate = '';
       }
       else
       {
         $scope.recval = false;
+        $scope.insert_d.sender = '';
+        $scope.insert_d.action = '';
+        $scope.insert_d.content = '';
+        $scope.insert_d.sdate = '';
       }
     }); 
   }
@@ -137,13 +145,24 @@ app.controller("recordCtrl", function($scope, $http, $location){
                         email : response.data.message.email, firstname: response.data.message.firstname, 
                         lastname: response.data.message.lastname, role: $scope.user.selectedrole}
               }).then(function(response) {
-                  $scope.AdduserResponse = response.data.message;
+                if(response.data.message==true){
                   $scope.userval = true;
+                  $scope.user.idnumber = '';
+                  $scope.user.selectedrole = '';
+                }
+                else if(response.data.message=="duplicate")
+                {
+                  $scope.user3val = true;
+                  $scope.user.idnumber = '';
+                  $scope.user.selectedrole = '';
+                }
               })
             }
             else
             {
               $scope.userval = false;
+              $scope.user.idnumber = '';
+              $scope.user.selectedrole = '';
             }
           });
   }

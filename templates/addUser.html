@@ -25,35 +25,38 @@
     <br>
     <div class="form-bdy">
         <form name="userForm" ng-submit="addUserData()">
-            <div class="alert-group">
-                <!-- error reporting goes here -->
+            <div ng-if="userval==true" class="alert-group">
+                <div class="alert alert-success">
+                    <p>Successfully added user</p>
+                </div>
+        	</div>
+        	<div ng-if="userval==false" class="alert-group">
                 <div class="alert alert-danger">
-                  <!--<strong>Oh snap!</strong> Change a few things up and try submitting again.-->
+                    <p>Something went wrong! Ensure that Id number is valid and role is selected</p>
+                </div>
+        	</div>
+        	<div ng-if="user3val==true" class="alert-group">
+                <div class="alert alert-danger">
+                    <p>The user you are trying to add is already added!!</p>
                 </div>
         	</div>
         	<h1 class="add-txt">ADD A NEW USER</h1>
              
-             <div class="form-group" ng-class= "{'has-error':true}">
+             <div class="form-group">
                  <label for="idNumber" class="control-label">ID Number:</label><br>
-                 <input type="number" name="idNumber" ng-model= "user.idnumber" id= "idnumber" class="form-control input-lg" required/>
-                 <span  class="help-block" id="idnum_error"></span>
-                 <pre>{{userForm.idNumber.$valid}}</pre>
+                 <input type="number" name="idNumber" ng-model= "user.idnumber" id="idnumber" class="form-control input-lg" required/>
              </div>
-             
              
              <div class="form-group">
                  <label for="lastname">Role:</label><br>
-                 <select ng-model="user.selectedrole" ng-options="x for x in roles" class="select-form input-lg">
-                  <option>--</option>
+                 <select name="role" ng-model="user.selectedrole" ng-options="x for x in roles" class="select-form input-lg">
+                  <option>Select a role</option>
                  </select>
-                 <span class="error" id="role_error"></span>
              </div>
-            
              <div class="add-btn">
-                 <input type="submit" class="btn btn-block btn-lg btn-primary" id = "register" value="ADD USER"/>
+                 <input type="submit" class="btn btn-block btn-lg btn-primary" value="ADD USER"/>
              </div>
         </form>
-        <pre>{{userForm | json}}</pre>
     </div>
 </html>
 <style>
@@ -97,20 +100,20 @@
         width:50%;
         margin-bottom:8px;
     }
-    .nav .home{
-        margin-top:6px;
+    .nav .search{
+        margin-top:8px;
         border-right: 1px solid rgba(28,78,128,0.16);
         opacity:0.5;
     }
-    .home:hover{
+    .search:hover{
         opacity:1;
     }
-    .nav .addUser{
-        margin-top:6px;
+    .nav .admin{
+        margin-top:4px;
         border-right: 1px solid rgba(28,78,128,0.16);
         opacity:0.5;
     }
-    .addUser:hover{
+    .admin:hover{
         opacity:1;
     }
     .nav .lgout{
