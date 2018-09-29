@@ -94,12 +94,14 @@ app.controller("recordCtrl", function($scope, $http, $location){
               console.log(response.data);
               if(response.data.message == "admin")
               {
-                $location.path("/admindash");
-              }
-              else if (response.data.message == "other")
-              {
                 $location.path("/dashboard");
+                //$location.path("/admindash");
+                $scope.showAddUser = true;
               }
+              // else if (response.data.message == "other")
+              // {
+              //   $location.path("/dashboard");
+              // }
               else
               {
                 $location.path("/");
@@ -218,9 +220,9 @@ app.controller("locationCtrl", function($scope,$location){
   $scope.goToRecordForm = function(){
     $location.path("/addRecord");
   }
-   $scope.goToHome = function(){
-    $location.path("/admindash");
-  }
+  // $scope.goToHome = function(){
+  //   $location.path("/admindash");
+  // }
   $scope.dashboard = function(){
     $location.path("/dashboard");
   }
