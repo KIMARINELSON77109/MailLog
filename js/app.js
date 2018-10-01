@@ -18,10 +18,6 @@ app.config(function($routeProvider) {
         templateUrl : "/templates/addUser.html",
         controller: 'recordCtrl'
     })
-    .when("/admindash", {
-        templateUrl : "/templates/AdminDash.html",
-        controller: 'recordCtrl'
-    });
 });
 
 app.controller("recordCtrl", function($scope, $http, $location){
@@ -48,6 +44,7 @@ app.controller("recordCtrl", function($scope, $http, $location){
           $scope.insert_d.action = '';
           $scope.insert_d.content = '';
           $scope.insert_d.sdate = '';
+          $location.path("/dashboard");
       }
       else
       {
@@ -61,6 +58,7 @@ app.controller("recordCtrl", function($scope, $http, $location){
   }
   $scope.log_in = {};
   $scope.rec = {};
+  $scope.showAddUser = localStorage.getItem('showAdduser') || false;
   $scope.loginform = function(){
     $http({
       method: "POST",
@@ -91,17 +89,17 @@ app.controller("recordCtrl", function($scope, $http, $location){
                 data: {idnumber: $scope.log_in.idnumber}
             }).then(function(response)
             {
-              console.log(response.data);
+              console.log(response.data.message);
               if(response.data.message == "admin")
               {
+                localStorage.setItem('showAdduser', 'false');
                 $location.path("/dashboard");
-                //$location.path("/admindash");
-                $scope.showAddUser = true;
               }
-              // else if (response.data.message == "other")
-              // {
-              //   $location.path("/dashboard");
-              // }
+              else if (response.data.message == "other")
+              {
+                localStorage.setItem('showAdduser', 'true');
+                $location.path("/dashboard");
+              }
               else
               {
                 $location.path("/");
@@ -110,9 +108,9 @@ app.controller("recordCtrl", function($scope, $http, $location){
           }
           else
           {
+            $scope.loginval = false;
             $location.path("/");
           }
-          console.log($scope.loginData);
     });
           
   }
@@ -181,7 +179,6 @@ app.controller("recordCtrl", function($scope, $http, $location){
         data: {numRec:20},
         }).then(function (response) {
         $scope.rec.records = response.data;
-        //console.log($scope.rec.records);
         });
   $scope.logout_user = function(){
      $http({
@@ -192,10 +189,9 @@ app.controller("recordCtrl", function($scope, $http, $location){
     if(response.data === "logged out"){
       $location.path("/");
     }
-      //console.log(response.data);
     });
   }
-  $scope.values = [5, 10, 20];
+  $scope.values = [5, 10, 20, 35];
   $scope.val={};
   $scope.limit_rec = function(){
   $http({
@@ -211,7 +207,6 @@ app.controller("recordCtrl", function($scope, $http, $location){
     data: {numRec: $scope.val.selectedvalue},
     }).then(function (response) {
         $scope.rec.records = response.data;
-        //console.log($scope.rec.records);
         });
    }
 });
@@ -220,10 +215,7 @@ app.controller("locationCtrl", function($scope,$location){
   $scope.goToRecordForm = function(){
     $location.path("/addRecord");
   }
-  // $scope.goToHome = function(){
-  //   $location.path("/admindash");
-  // }
-  $scope.dashboard = function(){
+  $scope.goDashboard = function(){
     $location.path("/dashboard");
   }
   $scope.goToAddUser = function(){

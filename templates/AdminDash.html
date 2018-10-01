@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title> MailLog Dashboard </title>
+        <title> Mail Log </title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
@@ -14,7 +14,7 @@
         <div class="container">
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="home"><a href="" ng-click="goToHome();" ng-controller="locationCtrl"><img src="/assets/icons/home-btn.png"></img></a></li>
+                    <li class="home"><a href="" ng-click="goDashboard1();" ng-controller="locationCtrl"><img src="/assets/icons/home-btn.png"></img></a></li>
                     <li class="addUser"><a href="" ng-click="goToAddUser();" ng-controller="locationCtrl"><img src="/assets/icons/addUser-btn-active.png"></img></a></li>
                     <li class="lgout"><a href="" ng-click="logout_user();" target="_blank"><img src="/assets/icons/logout-btn-active.png"></a></li>
                 </ul>
@@ -22,9 +22,8 @@
             <!--/.nav-collapse -->
         </div>
     </div>
-
-  <br>
-  <div class="wrapper">
+    </br>
+    <div class="wrapper">
     <div class="logo"><img src="/assets/pics/dashboard-logo.png"></img></div>
     <div class="add-rec-btn rec_space"><button ng-click="goToRecordForm()" ng-controller="locationCtrl"><img src="/assets/icons/add-record-btn.png"></img></button></div>
     <div class="topnav search">
@@ -60,7 +59,6 @@
       <a>Next Page>></a>
     </div>
   </div>
-</html>
 <style>
   @import url('https://fonts.googleapis.com/css?family=Helvetica');
       * {
@@ -96,17 +94,17 @@
     .nav .home{
         margin-top:6px;
         border-right: 1px solid rgba(28,78,128,0.16);
-        opacity:1;
-    }
-    .home:hover{
         opacity:0.5;
     }
-    .nav .addUser{
+    .home:hover{
+        opacity:1;
+    }
+    .nav .admin{
         margin-top:4px;
         border-right: 1px solid rgba(28,78,128,0.16);
         opacity:0.5;
     }
-    .addUser:hover{
+    .admin:hover{
         opacity:1;
     }
     .nav .lgout{
@@ -120,7 +118,8 @@
         margin-left:60px;
     }
     .search input{
-      width:50%;
+      width:30%;
+      background-color:transparent;
     }
     .search-btn{
       margin-left:31%;
@@ -153,10 +152,7 @@
     .page-nav{
       margin-left:64px;
     }
-    .page-nav p:hover{
+    .page-nav:hover{
       cursor:pointer;
-    }
-    .rec_space{
-      padding-top: 60px;
     }
 </style>

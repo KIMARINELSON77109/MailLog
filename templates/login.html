@@ -11,6 +11,11 @@
         <img src="/assets/pics/Login-Logo.png"></img>
       </div>
       <h3 class="login-title">Login</h3>
+      <div ng-if="loginval==false" class="alert-group">
+                <div class="alert alert-danger">
+                    <p>Something went wrong! Ensure that all fields are valid</p>
+                </div>
+        	</div>
       <div class="form-group">
         <label for="uname" class="control-label"></label>
         <input class="form-field" id="id-field" type="number" name="idNumber" placeholder="ID" ng-model ="log_in.idnumber" required><br>
