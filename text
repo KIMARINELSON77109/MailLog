@@ -1,0 +1,6 @@
+ <!--    <td>-->
+      <!--      <button type="button" ng-click="removeItem(row)" class="btn btn-sm btn-danger">-->
+  				<!--	<i class="glyphicon glyphicon-remove-circle">-->
+  				<!--	</i>-->
+  				<!--</button>-->
+      <!--    </td>-->

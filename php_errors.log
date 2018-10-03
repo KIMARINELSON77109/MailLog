@@ -104,3 +104,55 @@
 [29-Sep-2018 05:18:15 UTC] PHP Fatal error:  Call to a member function fetch() on a non-object in /home/ubuntu/workspace/php/addUser.php on line 22
 [29-Sep-2018 05:18:15 UTC] PHP Stack trace:
 [29-Sep-2018 05:18:15 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/addUser.php:0
+[02-Oct-2018 17:00:48 UTC] PHP Parse error:  syntax error, unexpected '"' in /home/ubuntu/workspace/php/addUser.php on line 30
+[02-Oct-2018 21:05:04 UTC] PHP Warning:  require_once(db_connect): failed to open stream: No such file or directory in /home/ubuntu/workspace/templates/dashboard.php on line 59
+[02-Oct-2018 21:05:04 UTC] PHP Stack trace:
+[02-Oct-2018 21:05:04 UTC] PHP   1. {main}() /home/ubuntu/workspace/templates/dashboard.php:0
+[02-Oct-2018 21:05:04 UTC] PHP Fatal error:  require_once(): Failed opening required 'db_connect' (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/templates/dashboard.php on line 59
+[02-Oct-2018 21:05:04 UTC] PHP Stack trace:
+[02-Oct-2018 21:05:04 UTC] PHP   1. {main}() /home/ubuntu/workspace/templates/dashboard.php:0
+[02-Oct-2018 21:06:01 UTC] PHP Warning:  require_once(db_connect.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/templates/dashboard.php on line 59
+[02-Oct-2018 21:06:01 UTC] PHP Stack trace:
+[02-Oct-2018 21:06:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/templates/dashboard.php:0
+[02-Oct-2018 21:06:01 UTC] PHP Fatal error:  require_once(): Failed opening required 'db_connect.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/templates/dashboard.php on line 59
+[02-Oct-2018 21:06:01 UTC] PHP Stack trace:
+[02-Oct-2018 21:06:01 UTC] PHP   1. {main}() /home/ubuntu/workspace/templates/dashboard.php:0
+[02-Oct-2018 21:06:37 UTC] PHP Warning:  require_once(./php/db_connect.php): failed to open stream: No such file or directory in /home/ubuntu/workspace/templates/dashboard.php on line 59
+[02-Oct-2018 21:06:37 UTC] PHP Stack trace:
+[02-Oct-2018 21:06:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/templates/dashboard.php:0
+[02-Oct-2018 21:06:37 UTC] PHP Fatal error:  require_once(): Failed opening required './php/db_connect.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/templates/dashboard.php on line 59
+[02-Oct-2018 21:06:37 UTC] PHP Stack trace:
+[02-Oct-2018 21:06:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/templates/dashboard.php:0
+[02-Oct-2018 21:06:53 UTC] PHP Warning:  include(1): failed to open stream: No such file or directory in /home/ubuntu/workspace/templates/dashboard.php on line 59
+[02-Oct-2018 21:06:53 UTC] PHP Stack trace:
+[02-Oct-2018 21:06:53 UTC] PHP   1. {main}() /home/ubuntu/workspace/templates/dashboard.php:0
+[02-Oct-2018 21:06:53 UTC] PHP Warning:  include(): Failed opening '1' for inclusion (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/templates/dashboard.php on line 59
+[02-Oct-2018 21:06:53 UTC] PHP Stack trace:
+[02-Oct-2018 21:06:53 UTC] PHP   1. {main}() /home/ubuntu/workspace/templates/dashboard.php:0
+[02-Oct-2018 21:06:53 UTC] PHP Fatal error:  Call to a member function query() on a non-object in /home/ubuntu/workspace/templates/dashboard.php on line 62
+[02-Oct-2018 21:06:53 UTC] PHP Stack trace:
+[02-Oct-2018 21:06:53 UTC] PHP   1. {main}() /home/ubuntu/workspace/templates/dashboard.php:0
+[03-Oct-2018 05:34:49 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 32 bytes) in /home/ubuntu/workspace/php/records.php on line 16
+[03-Oct-2018 05:34:49 UTC] PHP Stack trace:
+[03-Oct-2018 05:34:49 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/records.php:0
+[03-Oct-2018 05:34:49 UTC] PHP   2. PDOStatement->fetchAll() /home/ubuntu/workspace/php/records.php:16
+[03-Oct-2018 05:34:49 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 83 bytes) in /home/ubuntu/workspace/php/records.php on line 16
+[03-Oct-2018 05:34:49 UTC] PHP Stack trace:
+[03-Oct-2018 05:34:49 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/records.php:0
+[03-Oct-2018 05:34:49 UTC] PHP   2. PDOStatement->fetchAll() /home/ubuntu/workspace/php/records.php:16
+[03-Oct-2018 05:35:25 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 80 bytes) in /home/ubuntu/workspace/php/records.php on line 16
+[03-Oct-2018 05:35:25 UTC] PHP Stack trace:
+[03-Oct-2018 05:35:25 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/records.php:0
+[03-Oct-2018 05:35:25 UTC] PHP   2. PDOStatement->fetchAll() /home/ubuntu/workspace/php/records.php:16
+[03-Oct-2018 05:35:28 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 84 bytes) in /home/ubuntu/workspace/php/records.php on line 16
+[03-Oct-2018 05:35:28 UTC] PHP Stack trace:
+[03-Oct-2018 05:35:28 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/records.php:0
+[03-Oct-2018 05:35:28 UTC] PHP   2. PDOStatement->fetchAll() /home/ubuntu/workspace/php/records.php:16
+[03-Oct-2018 05:52:57 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 32 bytes) in /home/ubuntu/workspace/php/records.php on line 16
+[03-Oct-2018 05:52:57 UTC] PHP Stack trace:
+[03-Oct-2018 05:52:57 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/records.php:0
+[03-Oct-2018 05:52:57 UTC] PHP   2. PDOStatement->fetchAll() /home/ubuntu/workspace/php/records.php:16
+[03-Oct-2018 05:53:04 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 78 bytes) in /home/ubuntu/workspace/php/records.php on line 16
+[03-Oct-2018 05:53:04 UTC] PHP Stack trace:
+[03-Oct-2018 05:53:04 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/records.php:0
+[03-Oct-2018 05:53:04 UTC] PHP   2. PDOStatement->fetchAll() /home/ubuntu/workspace/php/records.php:16

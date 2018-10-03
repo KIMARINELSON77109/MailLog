@@ -68,11 +68,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
             $data = ['message' => "fail"];
         }
         echo json_encode($data);
-        
-        
-       /* $sql = "INSERT INTO Maillog (description, fromperson, logged_by, raction, rdate, sdate ) VALUES('$mailContent','$senderName',$fullname','$action', '$date_logged','$sDate');";
+    }
+    
+    $rec_id = $_POST['id'];
+    //echo $rec_id;
+    if($request_type == 3)
+    {
+        $sql = "delete from Maillog where id=".$rec_id;
         $db->exec($sql);
-    //echo 'Mail Logged';
-    echo $emp_id;*/
     }
 }

@@ -1,4 +1,4 @@
-var app = angular.module("mailLog", ["ngRoute"]);
+var app = angular.module("mailLog", ["ngRoute","datatables","datatables.bootstrap"]);
 
 app.config(function($routeProvider) {
     $routeProvider
@@ -20,7 +20,7 @@ app.config(function($routeProvider) {
     })
 });
 
-app.controller("recordCtrl", function($scope, $http, $location){
+app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder, DTColumnBuilder){
   $scope.insert_d = {};
   $scope.insertData = function(){
     $http({
@@ -176,10 +176,19 @@ app.controller("recordCtrl", function($scope, $http, $location){
                     str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
                     return str.join("&");
                 },
-        data: {numRec:20},
+        data: {numRec:10},
         }).then(function (response) {
         $scope.rec.records = response.data;
-        });
+        $scope.vm = {};
+    		$scope.vm.dtOptions = DTOptionsBuilder.newOptions()
+        		.withOption('order', [4, 'asc'])
+            .withOption('hasBootstrap', true)
+            .withPaginationType('full_numbers')
+            .withOption('autoWidth', false)
+            .withOption('searchDelay', 350)
+            .withOption('width', '70%')
+            .withOption('lengthChange',false)
+		 });
   $scope.logout_user = function(){
      $http({
       method: "POST",
@@ -209,6 +218,26 @@ app.controller("recordCtrl", function($scope, $http, $location){
         $scope.rec.records = response.data;
         });
    }
+   
+   // Remove record
+ $scope.removeItem = function(index,recid){
+  if (confirm('Are you sure you want to delete this?')) {
+  $http({
+   method: 'post',
+   url: '../php/main.php',
+   headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},
+      transformRequest: function(obj) {
+        var str = [];
+        for(var p in obj)
+        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+        return str.join("&");
+    },
+   data: {id:recid,request_type:3},
+  }).then(function successCallback(response) {
+   $scope.rec.records.splice(index,1);
+  });
+  }
+ }
 });
 
 app.controller("locationCtrl", function($scope,$location){
@@ -222,3 +251,4 @@ app.controller("locationCtrl", function($scope,$location){
     $location.path("/addUser");
   }
 });
+

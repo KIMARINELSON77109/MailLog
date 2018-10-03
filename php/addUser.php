@@ -18,12 +18,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     if (isset($idNumber) && isset($empFname) && isset($empLname) && isset($role) &&
     isset($email) && isset($department))
     {
+        $fullname = $empFname." ".$empLname;
         $stmt = $db->query("SELECT * FROM Person WHERE idNumber = '$idNumber'");
         $res = $stmt->fetch();
         
         if($res == null)
         {
-            $sql1 = "INSERT INTO Person(accountType,department,emailAddress,firstName,fullName,idNumber,lastName, password, photoURL, role) VALUES('activeDirectory','$department','$email', '$empFname', '$empFname' '$empLname','$idNumber','$empLname', '','','$role');";
+            $sql = "INSERT INTO Person(accountType,department,emailAddress,firstName,fullName,idNumber,lastName, password, photoURL, role) VALUES('activeDirectory','$department','$email', '$empFname', '$fullname','$idNumber','$empLname', '','','$role');";
             $res_ = $db->query($sql);
             
             if($res_ == true)
