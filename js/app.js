@@ -191,7 +191,34 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
             .withOption('saveState', true)
             .withOption('width', '70%')
             .withOption('lengthChange',false)
-		 });
+        
+        $scope.editingData = {};
+
+        for (var i = 0, length = $scope.records.length; i < length; i++) {
+          $scope.editingData[$scope.records[i].id] = false;
+        }
+        
+        $scope.modify = function(row){
+            $scope.editingData[row.id] = true;
+        };
+        
+        $scope.update = function(row){
+            $scope.editingData[row.id] = false;
+            $http({
+                method: "POST",
+                url: "../php/update.php",
+                headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},
+                transformRequest: function(obj) {
+                  var str = [];
+                  for(var p in obj)
+                  str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                  return str.join("&");
+              },
+              data: {id: row.id, sender: row.fromperson, action: row.raction, content: row.description,
+                sdate: row.sdate},
+              }).then(function (response) {})
+        };
+      		 });
   $scope.logout_user = function(){
      $http({
       method: "POST",
@@ -225,20 +252,6 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
     });
   }
  }
- 
-// $scope.editingData = {};
-
-//   for (var i = 0, length = $scope.records.length; i < length; i++) {
-//     $scope.editingData[$scope.records[i].id] = false;
-//   }
-  
-//   $scope.modify = function(row){
-//       $scope.editingData[row.id] = true;
-//   };
-  
-//   $scope.update = function(row){
-//       $scope.editingData[row.id] = false;
-//   };
 });
 
 app.controller("locationCtrl", function($scope,$location){

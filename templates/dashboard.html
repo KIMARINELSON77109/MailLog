@@ -33,14 +33,36 @@
       </thead>
       <tbody>
         <tr ng-repeat="row in records | filter : search">
-          <td ng-hide="editingData[row.id]">{{row.fromperson}}</td>
-          <td>{{row.description}}</td>
-          <td>{{row.raction}}</td>
-          <td>{{row.loggedby}}</td>
-          <td>{{row.sdate}}</td>
+          <td>
+            <div ng-hide="editingData[row.id]">{{row.fromperson}}</div>
+            <div ng-show="editingData[row.id]"><input class= "form-control" type="text" ng-model="row.fromperson" /></div>
+          </td>
+          
+          <td>
+            <div ng-hide="editingData[row.id]">{{row.description}}</div>
+            <div ng-show="editingData[row.id]"><input class= "form-control" type="text" ng-model="row.description" /></div>
+          </td>
+          
+          <td>
+            <div ng-hide="editingData[row.id]">{{row.raction}}</div>
+            <div ng-show="editingData[row.id]"><input class= "form-control" type="text" ng-model="row.raction" /></div>
+          </td>
+          
+          <td>
+            <div ng-hide="editingData[row.id]">{{row.loggedby}}</div>
+            <div ng-show="editingData[row.id]"><input class= "form-control" type="text" ng-model="row.loggedby" /></div>
+          </td>
+            
+          <td>
+            <div ng-hide="editingData[row.id]">{{row.sdate}}</div>
+            <div ng-show="editingData[row.id]"><input class= "form-control" type="text" ng-model="row.sdate" /></div>
+          </td>
+          
           <td ng-hide={{showAddUser}}>
             <button type="button" ng-click="removeItem($index,row.id)" class="btn btn-sm btn-danger">
   					<i class="glyphicon glyphicon-remove-circle"></i>
+  					<button ng-hide="editingData[row.id]" ng-click="modify(row)">Modify</button>
+  					<button ng-show="editingData[row.id]" ng-click="update(row)">Update</button>
   				 </button>
           </td>
         </tr>
