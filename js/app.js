@@ -57,7 +57,7 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
     }); 
   }
   $scope.log_in = {};
-  $scope.rec = {};
+  //$scope.rec = {};
   $scope.showAddUser = localStorage.getItem('showAdduser') || false;
   $scope.loginform = function(){
     $http({
@@ -166,6 +166,8 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
             }
           });
   }
+  
+  
   $http({
         method: "POST",
         url: "../php/records.php",
@@ -178,7 +180,7 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
                 },
         data: {numRec:10},
         }).then(function (response) {
-        $scope.rec.records = response.data;
+        $scope.records = response.data;
         $scope.vm = {};
     		$scope.vm.dtOptions = DTOptionsBuilder.newOptions()
         		.withOption('order', [4, 'asc'])
@@ -186,6 +188,7 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
             .withPaginationType('full_numbers')
             .withOption('autoWidth', false)
             .withOption('searchDelay', 350)
+            .withOption('saveState', true)
             .withOption('width', '70%')
             .withOption('lengthChange',false)
 		 });
@@ -200,44 +203,42 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
     }
     });
   }
-  $scope.values = [5, 10, 20, 35];
-  $scope.val={};
-  $scope.limit_rec = function(){
-  $http({
-      method: "POST",
-      url: "../php/records.php",
-      headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},
-      transformRequest: function(obj) {
-        var str = [];
-        for(var p in obj)
-        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-        return str.join("&");
-    },
-    data: {numRec: $scope.val.selectedvalue},
-    }).then(function (response) {
-        $scope.rec.records = response.data;
-        });
-   }
    
    // Remove record
- $scope.removeItem = function(index,recid){
-  if (confirm('Are you sure you want to delete this?')) {
-  $http({
-   method: 'post',
-   url: '../php/main.php',
-   headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},
-      transformRequest: function(obj) {
-        var str = [];
-        for(var p in obj)
-        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-        return str.join("&");
-    },
-   data: {id:recid,request_type:3},
-  }).then(function successCallback(response) {
-   $scope.rec.records.splice(index,1);
-  });
+ $scope.removeItem = function(index,recid)
+ {
+  if (confirm('Are you sure you want to delete this?'))
+  {
+    $http({
+     method: 'post',
+     url: '../php/main.php',
+     headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},
+        transformRequest: function(obj) {
+          var str = [];
+          for(var p in obj)
+          str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+          return str.join("&");
+      },
+     data: {id:recid,request_type:3},
+    }).then(function successCallback(response) {
+     $scope.records.splice(index,1);
+    });
   }
  }
+ 
+// $scope.editingData = {};
+
+//   for (var i = 0, length = $scope.records.length; i < length; i++) {
+//     $scope.editingData[$scope.records[i].id] = false;
+//   }
+  
+//   $scope.modify = function(row){
+//       $scope.editingData[row.id] = true;
+//   };
+  
+//   $scope.update = function(row){
+//       $scope.editingData[row.id] = false;
+//   };
 });
 
 app.controller("locationCtrl", function($scope,$location){

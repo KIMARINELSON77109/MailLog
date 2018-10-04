@@ -32,8 +32,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="row in rec.records | filter : search">
-          <td>{{row.fromperson}}</td>
+        <tr ng-repeat="row in records | filter : search">
+          <td ng-hide="editingData[row.id]">{{row.fromperson}}</td>
           <td>{{row.description}}</td>
           <td>{{row.raction}}</td>
           <td>{{row.loggedby}}</td>

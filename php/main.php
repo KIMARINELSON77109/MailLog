@@ -71,10 +71,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     }
     
     $rec_id = $_POST['id'];
-    //echo $rec_id;
-    if($request_type == 3)
+    $request_type = $_POST['request_type'];
+    
+    if($request_type == 3 && isset($rec_id))
     {
-        $sql = "delete from Maillog where id=".$rec_id;
-        $db->exec($sql);
+        echo $rec_id;
+        $sql = "delete from Maillog where id='$rec_id'";
+        $rec = $db->exec($sql);
+        
+        if($rec == true)
+        {
+            echo "delected";
+        }
     }
 }
