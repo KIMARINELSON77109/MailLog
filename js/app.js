@@ -45,13 +45,14 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
           $scope.insert_d.content = '';
           $scope.insert_d.sdate = '';
           $http({
-        method: "GET",
-        url: "../php/records.php",
-        }).then(function (response) {$scope.records = response.data;})
+            method: "GET",
+            url: "../php/records.php",
+            }).then(function (response) {$scope.records = response.data;})
+          $scope.recval = false;
       }
       else
       {
-        $scope.recval = false;
+        $scope.recval_1 = true;
         $scope.insert_d.sender = '';
         $scope.insert_d.action = '';
         $scope.insert_d.content = '';
