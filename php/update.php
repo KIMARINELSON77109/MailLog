@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         if($res_ != null)
         {
             
-            $sql = "UPDATE Maillog SET description = '$content', fromperson= '$Name', loggedby = '$fullname', raction = 'raction', rdate = '$date_logged', sdate='$Date' WHERE id = '$ID';";
+            $sql = "UPDATE Maillog SET description = '$content', fromperson= '$Name', loggedby = '$fullname', raction = '$raction', rdate = '$date_logged', sdate='$Date' WHERE id = '$ID';";
             $rec = $db->exec($sql);
             
             if(rec==true)

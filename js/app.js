@@ -20,7 +20,7 @@ app.config(function($routeProvider) {
     })
 });
 
-app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder, DTColumnBuilder){
+app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder, DTColumnBuilder,$interval){
   $scope.insert_d = {};
   $scope.insertData = function(){
     $http({
@@ -44,7 +44,10 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
           $scope.insert_d.action = '';
           $scope.insert_d.content = '';
           $scope.insert_d.sdate = '';
-          $location.path("/dashboard");
+          $http({
+        method: "GET",
+        url: "../php/records.php",
+        }).then(function (response) {$scope.records = response.data;})
       }
       else
       {
@@ -57,8 +60,8 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
     }); 
   }
   $scope.log_in = {};
-  //$scope.rec = {};
   $scope.showAddUser = localStorage.getItem('showAdduser') || false;
+  $scope.User = sessionStorage.getItem('user') || '';
   $scope.loginform = function(){
     $http({
       method: "POST",
@@ -72,7 +75,7 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
     },
     data: {idnumber: $scope.log_in.idnumber, password: $scope.log_in.password}
     }).then(function(response){
-      console.log(response.data.message)
+      console.log(response.data)
       $scope.loginData = response.data;
           if($scope.loginData.message == true)
           {
@@ -89,7 +92,9 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
                 data: {idnumber: $scope.log_in.idnumber}
             }).then(function(response)
             {
-              console.log(response.data.message);
+              console.log(response.data);
+               sessionStorage.setItem('user', response.data.User);
+              console.log($scope.user);
               if(response.data.message == "admin")
               {
                 localStorage.setItem('showAdduser', 'false');
@@ -166,19 +171,17 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
             }
           });
   }
-  
-  
   $http({
-        method: "POST",
+        method: "GET",
         url: "../php/records.php",
-        headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},
-                  transformRequest: function(obj) {
-                    var str = [];
-                    for(var p in obj)
-                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                    return str.join("&");
-                },
-        data: {numRec:10},
+        // headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},
+        //           transformRequest: function(obj) {
+        //             var str = [];
+        //             for(var p in obj)
+        //             str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+        //             return str.join("&");
+        //         },
+        // data: {numRec:10},
         }).then(function (response) {
         $scope.records = response.data;
         $scope.vm = {};
@@ -218,7 +221,7 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
                 sdate: row.sdate},
               }).then(function (response) {})
         };
-      		 });
+      });
   $scope.logout_user = function(){
      $http({
       method: "POST",
@@ -255,9 +258,6 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
 });
 
 app.controller("locationCtrl", function($scope,$location){
-  $scope.goToRecordForm = function(){
-    $location.path("/addRecord");
-  }
   $scope.goDashboard = function(){
     $location.path("/dashboard");
   }

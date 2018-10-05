@@ -4,3 +4,8 @@
   				<!--	</i>-->
   				<!--</button>-->
       <!--    </td>-->
+      
+      
+remember to change raction in update.php if reverted
+
+ng-click="goToRecordForm()" ng-controller="locationCtrl"

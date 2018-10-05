@@ -18,9 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
             $_SESSION["idNumber"] = $res["idNumber"];
             $_SESSION["user_id"] = $res["id"];
             $_SESSION["role"] = $res["role"];
+            $_SESSION["fullName"] = $res["fullName"];
             if($_SESSION["role"]=="admin")
             {
-                $data= ['message' => 'admin'];
+                $data= ['message' => 'admin', 'User' => $_SESSION["fullName"]];
             }
             else
             {
