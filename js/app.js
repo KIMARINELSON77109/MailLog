@@ -20,8 +20,9 @@ app.config(function($routeProvider) {
     })
 });
 
-app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder, DTColumnBuilder,$interval){
+app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder, DTColumnBuilder,DTColumnDefBuilder){
   $scope.insert_d = {};
+  //===============================================================================================-->
   $scope.insertData = function(){
     $http({
       method: "POST",
@@ -60,6 +61,8 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
       }
     }); 
   }
+  
+  //<!--===============================================================================================-->
   $scope.log_in = {};
   $scope.showAddUser = localStorage.getItem('showAdduser') || false;
   $scope.User = sessionStorage.getItem('user') || '';
@@ -120,6 +123,9 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
     });
           
   }
+  
+  
+  //<!--===============================================================================================-->
   $scope.roles = ["admin","guest"];
   $scope.user = {};
   $scope.addUserData = function(){
@@ -172,17 +178,28 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
             }
           });
   }
+  $scope.persons = {};
+  $http({
+        method: "GET",
+        url: "../php/persons.php",
+        }).then(function (response) {
+        $scope.persons = response.data;
+        $scope.vm = {};
+    		$scope.vm.dtOptions = DTOptionsBuilder.newOptions()
+        		.withOption('order', [4, 'asc'])
+            .withOption('hasBootstrap', true)
+            .withPaginationType('full_numbers')
+            .withOption('searchDelay', 350)
+            .withOption('saveState', true)
+            .withOption('width', '5%')
+            .withOption('lengthChange',false)
+            .withOption('destroy',true)
+      });
+  
+  $scope.records = {};
   $http({
         method: "GET",
         url: "../php/records.php",
-        // headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},
-        //           transformRequest: function(obj) {
-        //             var str = [];
-        //             for(var p in obj)
-        //             str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-        //             return str.join("&");
-        //         },
-        // data: {numRec:10},
         }).then(function (response) {
         $scope.records = response.data;
         $scope.vm = {};
@@ -190,14 +207,13 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
         		.withOption('order', [4, 'asc'])
             .withOption('hasBootstrap', true)
             .withPaginationType('full_numbers')
-            .withOption('autoWidth', false)
             .withOption('searchDelay', 350)
             .withOption('saveState', true)
-            .withOption('width', '70%')
+            .withOption('width', '5%')
             .withOption('lengthChange',false)
-        
-        $scope.editingData = {};
-
+            .withOption('destroy',true)
+      });
+  $scope.editingData = {};
         for (var i = 0, length = $scope.records.length; i < length; i++) {
           $scope.editingData[$scope.records[i].id] = false;
         }
@@ -220,9 +236,10 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
               },
               data: {id: row.id, sender: row.fromperson, action: row.raction, content: row.description,
                 sdate: row.sdate},
-              }).then(function (response) {})
+              }).then(function (response) {
+                
+              })
         };
-      });
   $scope.logout_user = function(){
      $http({
       method: "POST",
@@ -253,6 +270,27 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
      data: {id:recid,request_type:3},
     }).then(function successCallback(response) {
      $scope.records.splice(index,1);
+    });
+  }
+ }
+
+$scope.removePerson = function(index,recid)
+ {
+  if (confirm('Are you sure you want to delete this?'))
+  {
+    $http({
+     method: 'post',
+     url: '../php/main.php',
+     headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},
+        transformRequest: function(obj) {
+          var str = [];
+          for(var p in obj)
+          str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+          return str.join("&");
+      },
+     data: {id:recid,request_type:2},
+    }).then(function successCallback(response) {
+     $scope.persons.splice(index,1);
     });
   }
  }

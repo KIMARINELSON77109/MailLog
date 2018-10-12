@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css?family=Helvetica');
+      * {
+          margin: 0;
+          padding: 0;
+          border: 0;
+          outline: 0;
+          font-size: 100%;
+          vertical-align: baseline;
+      }
+    html{
+          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+          height: 100%;
+          min-height: 100%;
+          overflow:hidden;
+      }
+    body{
+        /*width: 100%;*/
+        height: 100%;
+        background-color:#e8e8e8;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        font-family: roboto;
+        min-height: 100%;
+        overflow:auto;
+        z-index: -1;
+    }
+    .navbar{
+        background-color:white;
+        border:none;
+    }
+    .nav .home{
+        margin-top:6px;
+        border-right: 1px solid rgba(28,78,128,0.16);
+        opacity:0.5;
+    }
+    .home:hover{
+        opacity:1;
+    }
+    .nav .admin{
+        margin-top:4px;
+        border-right: 1px solid rgba(28,78,128,0.16);
+        opacity:0.5;
+    }
+    .admin:hover{
+        opacity:1;
+    }
+    .nav .lgout{
+        margin-top:3px;
+        opacity:0.5;
+    }
+    .lgout:hover{
+        opacity:1;
+    }
+    .nav{
+        margin-left:60px;
+    }
+    .search input{
+      width:30%;
+      background-color:transparent;
+    }
+    .wrapper{
+      margin-top:5%;
+    }
+    .wrapper .add-rec-btn{
+      float:right;
+      margin-top:-80px;
+      margin-right:72px;
+    }
+    .logo{
+      margin-bottom:15px;
+      margin-left:64px;
+    }
+    .max-res{
+      margin-left:64px;
+      margin-bottom:32px;
+      margin-top:30px;
+    }
+    table{
+      margin-left:64px;
+      background-color:white;
+      width: 70%;
+    }
+    .page-nav{
+      margin-left:64px;
+    }
+    .page-nav:hover{
+      cursor:pointer;
+    }
+    .table-container{
+      padding-left: 50px;
+      padding-right: 100px;
+      padding-top: 15px;
+    }
+    .rec-row{
+      margin-left: 50px;
+      padding-bottom: 50px;
+      margin-right:-70px;
+    }
+    h3
+   {
+    text-align: left;
+    font-family: "Verdana", Sans-serif;
+    color: grey;
+   }

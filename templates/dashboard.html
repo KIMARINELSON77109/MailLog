@@ -1,4 +1,4 @@
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+ <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -10,7 +10,8 @@
             <!--/.nav-collapse -->
         </div>
     </div>
-    
+    </br>
+<div class = 'container main-container'>
     <div class="wrapper">
       <div class="logo"><img src="/assets/pics/dashboard-logo.png"></img>
       <div class="pull-right"><h3><strong>User: {{User}}</strong></h3></div>
@@ -22,6 +23,7 @@
         add new record
       </button>
     </div>
+</div>
     
     <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
@@ -67,7 +69,7 @@
       
     </div>
   </div>
-    <div class ='table-container'>
+    <div class ='container main-container'>
     <table datatable="ng" dt-options="vm.dtOptions" class="table table-striped table-hover">
       <thead>
         <tr>
@@ -80,7 +82,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="row in records | filter : search">
+        <tr ng-repeat="row in records">
           <td>
             <div ng-hide="editingData[row.id]">{{row.fromperson}}</div>
             <div ng-show="editingData[row.id]"><input class= "form-control" type="text" ng-model="row.fromperson" /></div>
@@ -119,109 +121,17 @@
       </tbody>
     </table>
     </div>
-<style>
-  @import url('https://fonts.googleapis.com/css?family=Helvetica');
-      * {
-          margin: 0;
-          padding: 0;
-          border: 0;
-          outline: 0;
-          font-size: 100%;
-          vertical-align: baseline;
-      }
-    html{
-          font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-          height: 100%;
-          min-height: 100%;
-          overflow:hidden;
-      }
-    body{
-        width: 95%;
-        height: 100%;
-        background-image: url(/assets/pics/dashboard-bg.png);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        font-family: roboto;
-        min-height: 100%;
-        overflow:auto;
-        z-index: -1;
-    }
-    .navbar{
-        background-color:white;
-        border:none;
-    }
-    .nav .home{
-        margin-top:6px;
-        border-right: 1px solid rgba(28,78,128,0.16);
-        opacity:0.5;
-    }
-    .home:hover{
-        opacity:1;
-    }
-    .nav .admin{
-        margin-top:4px;
-        border-right: 1px solid rgba(28,78,128,0.16);
-        opacity:0.5;
-    }
-    .admin:hover{
-        opacity:1;
-    }
-    .nav .lgout{
-        margin-top:3px;
-        opacity:0.5;
-    }
-    .lgout:hover{
-        opacity:1;
-    }
-    .nav{
-        margin-left:60px;
-    }
-    .search input{
-      width:30%;
-      background-color:transparent;
-    }
-    .wrapper{
-      margin-top:5%;
-    }
-    .wrapper .add-rec-btn{
-      float:right;
-      margin-top:-80px;
-      margin-right:72px;
-    }
-    .logo{
-      margin-bottom:15px;
-      margin-left:64px;
-    }
-    .max-res{
-      margin-left:64px;
-      margin-bottom:32px;
-      margin-top:30px;
-    }
-    table{
-      margin-left:64px;
-      background-color:white;
-      width: 70%;
-    }
-    .page-nav{
-      margin-left:64px;
-    }
-    .page-nav:hover{
-      cursor:pointer;
-    }
-    .table-container{
-      padding-left: 50px;
-      padding-right: 50px;
-      padding-top: 15px;
-    }
-    .rec-row{
-      margin-left: 120px;
-      padding-bottom: 50px;
-    }
-    h3
-   {
-    text-align: left;
-    font-family: "Verdana", Sans-serif;
-    color: grey;
-   }
-</style>
+    <footer id="app-footer" class="footer ng-scope">
+ 	<div class="container">
+ 		<div class="row">
+ 			<div class="container-fluid">
+		 		<nav class="navbar">
+				    <ul class="nav">
+			            <li class="navbar-text pull-right"><a id="feedback-btn" ui-sref="feedback" href="/feedback">Send Feedback</a></li>
+			        </ul>
+				</nav> 				
+ 			</div>
+ 		</div>
+ 	</div>
+</footer>
+

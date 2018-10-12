@@ -9,3 +9,4 @@
 remember to change raction in update.php if reverted
 
 ng-click="goToRecordForm()" ng-controller="locationCtrl"
+620061513

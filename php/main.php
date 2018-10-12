@@ -85,4 +85,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
             echo "delected";
         }
     }
+    
+    $rec_id = $_POST['id'];
+    $request_type = $_POST['request_type'];
+    
+    if($request_type == 2 && isset($rec_id))
+    {
+        echo $rec_id;
+        $sql = "delete from Person where id='$rec_id'";
+        $rec = $db->exec($sql);
+        
+        if($rec == true)
+        {
+            echo "delected";
+        }
+    }
 }
