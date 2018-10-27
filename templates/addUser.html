@@ -1,37 +1,25 @@
-<html>
-        <head>
-            <title> Mail Log </title>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-            <!--<link rel="stylesheet" href="addRecord.css">-->
-            
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        </head>
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="collapse navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="home"><a href="" ng-click="goDashboard();" ng-controller="locationCtrl"><img src="/assets/icons/home-btn.png"></img></a></li>
-                    <li class="lgout"><a href="" ng-click="logout_user();" target="_blank"><img src="/assets/icons/logout-btn-active.png"></a></li>
-                </ul>
-            </div>
-            <!--/.nav-collapse -->
+<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="home"><a href="" ng-click="goDashboard();" ng-controller="locationCtrl"><img src="/assets/icons/home-btn.png"></img></a></li>
+                <li class="lgout"><a href="" ng-click="logout_user();" target="_blank"><img src="/assets/icons/logout-btn-active.png"></a></li>
+            </ul>
         </div>
+            <!--/.nav-collapse -->
     </div>
+</div>
     </br>
-<div class = 'container main-container'>
+<div class = 'container'>
     <div class="wrapper">
       <div class="logo"><img src="/assets/pics/dashboard-logo.png"></img>
-      <!--<div class="pull-right"><h3><strong>Hello, {{User}}</strong></h3></div>-->
+      <div class="pull-right"><h3><strong>Hello,</strong> {{User}}</h3></div>
     </div>
     </div>
-    <div class="rec-row1 well">
-      <button class="btn btn-danger pull-right" data-toggle="modal" data-target="#myModal">
+    <div class="rec-row well">
+      <button class="btn btn-warning pull-right" data-toggle="modal" data-target="#myModal">
         <i class="glyphicon glyphicon-plus"></i>
-       ADD NEW USER
+        ADD NEW USER
       </button>
     </div>
 </div>
@@ -120,11 +108,24 @@
           
           <td ng-hide={{showAddUser}}>
             <button type="button" ng-click="removePerson($index,row.id)" class="btn btn-sm btn-danger">
-  					<i class="glyphicon glyphicon-trash"></i>
-  				 </button>
+  			    <i class="glyphicon glyphicon-trash"></i>
+  			</button>
           </td>
         </tr>
       </tbody>
     </table>
     </div>
+    <footer id="app-footer" class="footer ng-scope">
+ 	    <div class="container">
+ 		    <div class="row">
+ 			    <div class="container-fluid">
+		 		    <nav class="navbar">
+				        <ul class="nav">
+			                <li class="navbar-text pull-right"><a id="feedback-btn" ui-sref="feedback" href="/feedback">Send Feedback</a></li>
+			            </ul>
+				    </nav> 				
+ 			    </div>
+ 		    </div>
+ 	    </div>
+    </footer>
 </html>
