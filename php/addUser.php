@@ -19,7 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     isset($email) && isset($department))
     {
         $fullname = $empFname." ".$empLname;
-        $role = ucwords($role);
         
         $stmt = $db->query("SELECT * FROM Person WHERE idNumber = '$idNumber'");
         $res = $stmt->fetch();

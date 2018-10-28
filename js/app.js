@@ -99,7 +99,7 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
               console.log(response.data);
                sessionStorage.setItem('user', response.data.User);
               console.log($scope.user);
-              if(response.data.message == "Admin")
+              if(response.data.message == "admin")
               {
                 localStorage.setItem('showAdduser', 'false');
                 $location.path("/dashboard");
