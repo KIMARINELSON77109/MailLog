@@ -47,6 +47,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     {
 //##############################get id of sender################################
         $emp_id = $_SESSION["user_id"];
+        $senderName = ucwords($senderName);
+        $mailContent = sentence_case($mailContent);
+        $action = sentence_case($action);
         
         //echo $emp_id;
         

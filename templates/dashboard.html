@@ -3,7 +3,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="home"><a href="" ng-click="goDashboard();" ng-controller="locationCtrl"><img src="/assets/icons/home-btn.png"></img></a></li>
-                    <li ng-hide={{showAddUser}} class="addUser"><a href="" ng-click="goToAddUser();"ng-controller="locationCtrl"><img src="/assets/icons/addUser-btn-active.png"></img></a></li>
+                    <li ng-hide={{showAddUser}} class="addUser"><a href="" ng-click="goToAddUser();"ng-controller="locationCtrl"><img src="/assets/icons/admin-btn-active.png"></img></a></li>
                     <li class="lgout"><a href="" ng-click="logout_user();" target="_blank"><img src="/assets/icons/logout-btn-active.png"></a></li>
                 </ul>
             </div>
@@ -54,7 +54,7 @@
                 
             <div class="form-group">
               <label for="date-rec">Date Received:</label><br>
-              <input type="text" ng-model="insert_d.sdate" class="form-control input-lg" placeholder="MM-DD-YYYY" required/>
+              <input type="text" ng-model="insert_d.sdate" class="form-control input-lg" placeholder="YYYY-MM-DD" required/>
             </div>
                 
             <div class="add-btn">

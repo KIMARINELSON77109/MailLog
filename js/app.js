@@ -99,7 +99,7 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
               console.log(response.data);
                sessionStorage.setItem('user', response.data.User);
               console.log($scope.user);
-              if(response.data.message == "admin")
+              if(response.data.message == "Admin")
               {
                 localStorage.setItem('showAdduser', 'false');
                 $location.path("/dashboard");
@@ -161,6 +161,10 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
                   $scope.userval = true;
                   $scope.user.idnumber = '';
                   $scope.user.selectedrole = '';
+                  // $http({
+                  // method: "GET",
+                  // url: "../php/persons.php",
+                  // }).then(function (response) {$scope.persons = response.data;})
                 }
                 else if(response.data.message=="duplicate")
                 {
