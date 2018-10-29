@@ -122,3 +122,11 @@
   .pad{
     padding-bottom:50px;
   }
+  #up_rec{
+    font-weight: 70px;
+  }
+  
+  #update-success
+  {
+    padding-top: 20px;
+  }

@@ -26,10 +26,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         $stmt_2 = $db->query("SELECT * FROM Person WHERE id = '$emp_id'");
         $res_ = $stmt_2->fetch();
         $fullname = $res_["fullName"];
+        
+        $editedBy = $fullname." (edit)";
+        
         if($res_ != null)
         {
             
-            $sql = "UPDATE Maillog SET description = '$content', fromperson= '$Name', loggedby = '$fullname', raction = '$raction', rdate = '$date_logged', sdate='$Date' WHERE id = '$ID';";
+            $sql = "UPDATE Maillog SET description = '$content', fromperson= '$Name', loggedby = '$editedBy', raction = '$raction', rdate = '$date_logged', sdate='$Date' WHERE id = '$ID';";
             $rec = $db->exec($sql);
             
             if(rec==true)

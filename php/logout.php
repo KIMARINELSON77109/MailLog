@@ -7,10 +7,10 @@ session_start();
 //#################################logout#######################################
 if ($_SERVER['REQUEST_METHOD'] === 'POST') 
 {
-    $logout_data = json_decode(file_get_contents("php://input"));
+    $logout_data = $_POST["logout"];
         if($logout_data)
         {
-            session_unset();
+            //session_unset();
             session_destroy();
         }
     echo "logged out";

@@ -126,7 +126,7 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
   
   
   //<!--===============================================================================================-->
-  $scope.roles = ["admin","guest"];
+  $scope.roles = ["admin","regular user"];
   $scope.user = {};
   $scope.addUserData = function(){
       $http({
@@ -158,31 +158,29 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
                         lastname: response.data.message.lastname, role: $scope.user.selectedrole}
               }).then(function(response) {
                 if(response.data.message==true){
-                  $scope.userval = true;
                   $scope.user.idnumber = '';
                   $scope.user.selectedrole = '';
-                  // $http({
-                  // method: "GET",
-                  // url: "../php/persons.php",
-                  // }).then(function (response) {$scope.persons = response.data;})
+                  alert("User successfully added");
+                  
                 }
                 else if(response.data.message=="duplicate")
                 {
-                  $scope.user3val = true;
                   $scope.user.idnumber = '';
                   $scope.user.selectedrole = '';
+                  alert("The user you are trying to add is already added!!"); 
                 }
               })
             }
             else
             {
-              $scope.userval = false;
               $scope.user.idnumber = '';
               $scope.user.selectedrole = '';
+              alert("Something went wrong! Ensure that Id number is valid and role is selected");
             }
           });
   }
   $scope.persons = {};
+  $('#update-success').hide();
   $http({
         method: "GET",
         url: "../php/persons.php",
@@ -208,7 +206,7 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
         $scope.records = response.data;
         $scope.vm = {};
     		$scope.vm.dtOptions = DTOptionsBuilder.newOptions()
-        		.withOption('order', [4, 'asc'])
+        		.withOption('order', [4, 'desc'])
             .withOption('hasBootstrap', true)
             .withPaginationType('full_numbers')
             .withOption('searchDelay', 350)
@@ -241,16 +239,26 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
               data: {id: row.id, sender: row.fromperson, action: row.raction, content: row.description,
                 sdate: row.sdate},
               }).then(function (response) {
-                
+                if(response.data.message == "updated"){
+                //alert("Record updated successfully");
+                alert("Record updated successfully");
+                }
               })
         };
   $scope.logout_user = function(){
      $http({
       method: "POST",
       url: "../php/logout.php",
-      data: $scope.logout = true,
+      headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},
+        transformRequest: function(obj) {
+          var str = [];
+          for(var p in obj)
+          str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+          return str.join("&");
+      },
+      data: {logout:true},
     }).then(function (response) {
-    if(response.data === "logged out"){
+    if(response.data == "logged out"){
       $location.path("/");
     }
     });

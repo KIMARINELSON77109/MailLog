@@ -1,0 +1,6 @@
+AddType application/x-httpd-php .php .html .htm .txt
+
+<files dashboard>
+    order allow,deny
+    deny from all
+</files>

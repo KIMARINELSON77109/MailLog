@@ -23,6 +23,7 @@
       </button>
     </div>
 </div>
+
     
     <br>
     <div class="modal fade" id="myModal" role="dialog">
@@ -31,25 +32,10 @@
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">ADD A NEW RECORD</h4>
+              <h4 id="alert-modal-title" class="modal-title"></h4>
             </div>
              <div class="modal-body">
                 <form name="userForm" ng-submit="addUserData()">
-                    <div ng-if="userval==true" class="alert-group">
-                        <div class="alert alert-success">
-                            <p>Successfully added user</p>
-                        </div>
-                	</div>
-                	<div ng-if="userval==false" class="alert-group">
-                        <div class="alert alert-danger">
-                            <p>Something went wrong! Ensure that Id number is valid and role is selected</p>
-                        </div>
-                	</div>
-                	<div ng-if="user3val==true" class="alert-group">
-                        <div class="alert alert-danger">
-                            <p>The user you are trying to add is already added!!</p>
-                        </div>
-                	</div>
                 	<h1 class="add-txt">ADD A NEW USER</h1>
                      
                      <div class="form-group">
