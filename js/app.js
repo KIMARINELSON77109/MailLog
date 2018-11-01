@@ -188,12 +188,10 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
         $scope.persons = response.data;
         $scope.vm = {};
     		$scope.vm.dtOptions = DTOptionsBuilder.newOptions()
-        		.withOption('order', [4, 'asc'])
+        		.withOption('order', [0, 'desc'])
             .withOption('hasBootstrap', true)
             .withPaginationType('full_numbers')
-            .withOption('searchDelay', 350)
             .withOption('saveState', true)
-            .withOption('width', '5%')
             .withOption('lengthChange',false)
             .withOption('destroy',true)
       });
@@ -206,12 +204,10 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
         $scope.records = response.data;
         $scope.vm = {};
     		$scope.vm.dtOptions = DTOptionsBuilder.newOptions()
-        		.withOption('order', [4, 'desc'])
+        		.withOption('order', [1, 'desc'])
             .withOption('hasBootstrap', true)
             .withPaginationType('full_numbers')
-            .withOption('searchDelay', 350)
             .withOption('saveState', true)
-            .withOption('width', '5%')
             .withOption('lengthChange',false)
             .withOption('destroy',true)
       });

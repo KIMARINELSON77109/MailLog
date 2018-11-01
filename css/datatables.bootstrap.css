@@ -34,11 +34,11 @@ div.dataTables_paginate ul.pagination {
 }
 table.table {
     clear: both;
-    max-width: none !important;
+    max-width: 10000px;
 }
 table.table thead .sorting,
-table.table thead .sorting_asc,
-table.table thead .sorting_desc,
+/*table.table thead .sorting_asc,*/
+/*table.table thead .sorting_desc,*/
 table.table thead .sorting_asc_disabled,
 table.table thead .sorting_desc_disabled {
     cursor: pointer;
@@ -49,14 +49,14 @@ table.table thead .sorting:before {
     position: relative;
     left: -5px;
 }
-table.table thead .sorting_desc:before {
-    content: "\25BE";
-    padding-right: 5px;
-}
-table.table thead .sorting_asc:before {
-    content: "\25B4";
-    padding-right: 5px;
-}
+/*table.table thead .sorting_desc:before {*/
+/*    content: "\25BE";*/
+/*    padding-right: 5px;*/
+/*}*/
+/*table.table thead .sorting_asc:before {*/
+/*    content: "\25B4";*/
+/*    padding-right: 5px;*/
+/*}*/
 .dataTables_scrollBody table.table thead .sorting:before,
 .dataTables_scrollBody table.table thead .sorting_desc:before,
 .dataTables_scrollBody table.table thead .sorting_asc:before {

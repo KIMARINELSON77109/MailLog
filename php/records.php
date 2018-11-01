@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET')
     // $numOfRecord = $_POST["numRec"];
     // if(isset($numOfRecord))
     // {
-            $sql1 = "SELECT * FROM Maillog ORDER BY id desc LIMIT 100";
+            $sql1 = "SELECT * FROM Maillog ORDER BY id DESC LIMIT 1000";
             $stmt = $db->query($sql1);
             $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
             

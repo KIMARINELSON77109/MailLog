@@ -73,6 +73,7 @@
     <table datatable="ng" dt-options="vm.dtOptions" class="table table-striped table-hover">
       <thead>
         <tr>
+          <th>ID</th>
           <th>Sender</th> 
           <th>Contents</th>
           <th>Actions </th>
@@ -83,6 +84,9 @@
       </thead>
       <tbody>
         <tr ng-repeat="row in records">
+          <td>
+           <div>{{row.id}}</div>
+          </td>
           <td>
             <div ng-hide="editingData[row.id]">{{row.fromperson}}</div>
             <div ng-show="editingData[row.id]"><input class= "form-control" type="text" ng-model="row.fromperson" /></div>
