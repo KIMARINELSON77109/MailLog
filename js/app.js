@@ -21,48 +21,10 @@ app.config(function($routeProvider) {
 });
 
 app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder, DTColumnBuilder,DTColumnDefBuilder){
-  $scope.insert_d = {};
-  //===============================================================================================-->
-  $scope.insertData = function(){
-    $http({
-      method: "POST",
-      url: "../php/main.php",
-      headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},
-      transformRequest: function(obj) {
-        var str = [];
-        for(var p in obj)
-        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-        return str.join("&");
-    },
-    data: {sender: $scope.insert_d.sender, action: $scope.insert_d.action, content: $scope.insert_d.content,
-      sdate: $scope.insert_d.sdate},
-    }).then(function (response) {
-      if(response.data.message == "success")
-      {
-          $scope.recordData = response.data;
-          $scope.recval = true;
-          $scope.insert_d.sender = '';
-          $scope.insert_d.action = '';
-          $scope.insert_d.content = '';
-          $scope.insert_d.sdate = '';
-          $http({
-            method: "GET",
-            url: "../php/records.php",
-            }).then(function (response) {$scope.records = response.data;})
-          $scope.recval = false;
-      }
-      else
-      {
-        $scope.recval_1 = true;
-        $scope.insert_d.sender = '';
-        $scope.insert_d.action = '';
-        $scope.insert_d.content = '';
-        $scope.insert_d.sdate = '';
-      }
-    }); 
-  }
-  
-  //<!--===============================================================================================-->
+
+
+//Login Function
+//<!--===============================================================================================-->
   $scope.log_in = {};
   $scope.showAddUser = localStorage.getItem('showAdduser') || false;
   $scope.User = sessionStorage.getItem('user') || '';
@@ -122,10 +84,124 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
           }
     });
           
-  }
+  } 
+ 
+  
+// retrieve and Load records  
+//<!--===============================================================================================--> 
+$scope.records = {};
+  $http({
+        method: "POST",
+        url: "../php/records.php",
+        }).then(function (response) {
+        $scope.records = response.data;
+        $scope.vm = {};
+    		$scope.vm.dtOptions = DTOptionsBuilder.newOptions()
+        		.withOption('order', [0, 'desc'])
+            .withOption('hasBootstrap', true)
+            .withPaginationType('full_numbers')
+            .withOption('saveState', false)
+            .withOption('lengthChange',false)
+            .withOption('destroy',true)
+      });
+      
+  $scope.editingData = {};
+        for (var i = 0, length = $scope.records.length; i < length; i++) {
+          $scope.editingData[$scope.records[i].id] = false;
+        }
+        
+        $scope.modify = function(row){
+            $scope.editingData[row.id] = true;
+        };
+        
+        $scope.update = function(row){
+            $scope.editingData[row.id] = false;
+            $http({
+                method: "POST",
+                url: "../php/update.php",
+                headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},
+                transformRequest: function(obj) {
+                  var str = [];
+                  for(var p in obj)
+                  str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                  return str.join("&");
+              },
+              data: {id: row.id, sender: row.fromperson, action: row.raction, content: row.description,
+                sdate: row.sdate},
+              }).then(function (response) {
+                if(response.data.message == "updated"){
+                //alert("Record updated successfully");
+                alert("Record updated successfully");
+                }
+              })
+        };  
+
+
+// Function to add records
+//===============================================================================================-->
+  $scope.insert_d = {};
+  $scope.insertData = function(){
+    $http({
+      method: "POST",
+      url: "../php/main.php",
+      headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},
+      transformRequest: function(obj) {
+        var str = [];
+        for(var p in obj)
+        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+        return str.join("&");
+    },
+    data: {sender: $scope.insert_d.sender, action: $scope.insert_d.action, content: $scope.insert_d.content,
+      sdate: $scope.insert_d.sdate},
+    }).then(function (response) {
+      if(response.data.message == "success")
+      {
+          $scope.recordData = response.data;
+          $scope.insert_d.sender = '';
+          $scope.insert_d.action = '';
+          $scope.insert_d.content = '';
+          $scope.insert_d.sdate = '';
+          alert("Record add successfully");
+          $http({
+            method: "POST",
+            url: "../php/records.php",
+            }).then(function (response) {$scope.records = response.data;})
+          
+      }
+      else
+      {
+        $scope.recval_1 = true;
+        $scope.insert_d.sender = '';
+        $scope.insert_d.action = '';
+        $scope.insert_d.content = '';
+        $scope.insert_d.sdate = '';
+        alert("Somthing went wrong!! Try again");
+      }
+    }); 
+  }  
   
   
-  //<!--===============================================================================================-->
+//Retrieve users  
+//<!--===============================================================================================-->
+  $scope.persons = {};
+  $http({
+        method: "POST",
+        url: "../php/persons.php",
+        }).then(function (response) {
+        $scope.persons = response.data;
+        $scope.vm = {};
+    		$scope.vm.dtOptions = DTOptionsBuilder.newOptions()
+        		.withOption('order', [0, 'desc'])
+            .withOption('hasBootstrap', true)
+            .withPaginationType('full_numbers')
+            .withOption('saveState', false)
+            .withOption('lengthChange',false)
+            .withOption('destroy',true)
+      });
+      
+      
+// Function to add user  
+//<!--===============================================================================================-->
   $scope.roles = ["admin","regular user"];
   $scope.user = {};
   $scope.addUserData = function(){
@@ -179,88 +255,10 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
             }
           });
   }
-  $scope.persons = {};
-  $('#update-success').hide();
-  $http({
-        method: "GET",
-        url: "../php/persons.php",
-        }).then(function (response) {
-        $scope.persons = response.data;
-        $scope.vm = {};
-    		$scope.vm.dtOptions = DTOptionsBuilder.newOptions()
-        		.withOption('order', [0, 'desc'])
-            .withOption('hasBootstrap', true)
-            .withPaginationType('full_numbers')
-            .withOption('saveState', true)
-            .withOption('lengthChange',false)
-            .withOption('destroy',true)
-      });
   
-  $scope.records = {};
-  $http({
-        method: "GET",
-        url: "../php/records.php",
-        }).then(function (response) {
-        $scope.records = response.data;
-        $scope.vm = {};
-    		$scope.vm.dtOptions = DTOptionsBuilder.newOptions()
-        		.withOption('order', [1, 'desc'])
-            .withOption('hasBootstrap', true)
-            .withPaginationType('full_numbers')
-            .withOption('saveState', true)
-            .withOption('lengthChange',false)
-            .withOption('destroy',true)
-      });
-  $scope.editingData = {};
-        for (var i = 0, length = $scope.records.length; i < length; i++) {
-          $scope.editingData[$scope.records[i].id] = false;
-        }
-        
-        $scope.modify = function(row){
-            $scope.editingData[row.id] = true;
-        };
-        
-        $scope.update = function(row){
-            $scope.editingData[row.id] = false;
-            $http({
-                method: "POST",
-                url: "../php/update.php",
-                headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},
-                transformRequest: function(obj) {
-                  var str = [];
-                  for(var p in obj)
-                  str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                  return str.join("&");
-              },
-              data: {id: row.id, sender: row.fromperson, action: row.raction, content: row.description,
-                sdate: row.sdate},
-              }).then(function (response) {
-                if(response.data.message == "updated"){
-                //alert("Record updated successfully");
-                alert("Record updated successfully");
-                }
-              })
-        };
-  $scope.logout_user = function(){
-     $http({
-      method: "POST",
-      url: "../php/logout.php",
-      headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},
-        transformRequest: function(obj) {
-          var str = [];
-          for(var p in obj)
-          str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-          return str.join("&");
-      },
-      data: {logout:true},
-    }).then(function (response) {
-    if(response.data == "logged out"){
-      $location.path("/");
-    }
-    });
-  }
-   
-   // Remove record
+  
+// Remove record
+//<!--===============================================================================================-->
  $scope.removeItem = function(index,recid)
  {
   if (confirm('Are you sure you want to delete this?'))
@@ -282,6 +280,9 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
   }
  }
 
+
+// Remove users
+//<!--===============================================================================================-->
 $scope.removePerson = function(index,recid)
  {
   if (confirm('Are you sure you want to delete this?'))
@@ -302,6 +303,27 @@ $scope.removePerson = function(index,recid)
     });
   }
  }
+ 
+// Logout user function
+//<!--===============================================================================================--> 
+$scope.logout_user = function(){
+     $http({
+      method: "POST",
+      url: "../php/logout.php",
+      headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},
+        transformRequest: function(obj) {
+          var str = [];
+          for(var p in obj)
+          str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+          return str.join("&");
+      },
+      data: {logout:true},
+    }).then(function (response) {
+    if(response.data == "logged out"){
+      $location.path("/");
+    }
+    });
+  }
 });
 
 app.controller("locationCtrl", function($scope,$location){
