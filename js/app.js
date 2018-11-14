@@ -1,4 +1,4 @@
-var app = angular.module("mailLog", ["ngRoute","datatables","datatables.bootstrap"]);
+var app = angular.module("mailLog", ["ngRoute","ui.bootstrap"]);
 
 app.config(function($routeProvider) {
     $routeProvider
@@ -20,7 +20,7 @@ app.config(function($routeProvider) {
     })
 });
 
-app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder, DTColumnBuilder,DTColumnDefBuilder){
+app.controller("recordCtrl", function($scope, $http, $location){
 
 
 //Login Function
@@ -89,52 +89,52 @@ app.controller("recordCtrl", function($scope, $http, $location,DTOptionsBuilder,
   
 // retrieve and Load records  
 //<!--===============================================================================================--> 
-$scope.records = {};
-  $http({
-        method: "POST",
-        url: "../php/records.php",
-        }).then(function (response) {
-        $scope.records = response.data;
-        $scope.vm = {};
-    		$scope.vm.dtOptions = DTOptionsBuilder.newOptions()
-        		.withOption('order', [0, 'desc'])
-            .withOption('hasBootstrap', true)
-            .withPaginationType('full_numbers')
-            .withOption('saveState', false)
-            .withOption('lengthChange',false)
-            .withOption('destroy',true)
-      });
+// $scope.records = {};
+//   $http({
+//         method: "POST",
+//         url: "../php/records.php",
+//         }).then(function (response) {
+//         $scope.records = response.data;
+//         $scope.vm = {};
+//     		$scope.vm.dtOptions = DTOptionsBuilder.newOptions()
+//         		.withOption('order', [0, 'desc'])
+//             .withOption('hasBootstrap', true)
+//             .withPaginationType('full_numbers')
+//             .withOption('saveState', false)
+//             .withOption('lengthChange',false)
+//             .withOption('destroy',true)
+//       });
       
-  $scope.editingData = {};
-        for (var i = 0, length = $scope.records.length; i < length; i++) {
-          $scope.editingData[$scope.records[i].id] = false;
-        }
+  // $scope.editingData = {};
+  //       for (var i = 0, length = $scope.records.length; i < length; i++) {
+  //         $scope.editingData[$scope.records[i].id] = false;
+  //       }
         
-        $scope.modify = function(row){
-            $scope.editingData[row.id] = true;
-        };
+  //       $scope.modify = function(row){
+  //           $scope.editingData[row.id] = true;
+  //       };
         
-        $scope.update = function(row){
-            $scope.editingData[row.id] = false;
-            $http({
-                method: "POST",
-                url: "../php/update.php",
-                headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},
-                transformRequest: function(obj) {
-                  var str = [];
-                  for(var p in obj)
-                  str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                  return str.join("&");
-              },
-              data: {id: row.id, sender: row.fromperson, action: row.raction, content: row.description,
-                sdate: row.sdate},
-              }).then(function (response) {
-                if(response.data.message == "updated"){
-                //alert("Record updated successfully");
-                alert("Record updated successfully");
-                }
-              })
-        };  
+  //       $scope.update = function(row){
+  //           $scope.editingData[row.id] = false;
+  //           $http({
+  //               method: "POST",
+  //               url: "../php/update.php",
+  //               headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},
+  //               transformRequest: function(obj) {
+  //                 var str = [];
+  //                 for(var p in obj)
+  //                 str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+  //                 return str.join("&");
+  //             },
+  //             data: {id: row.id, sender: row.fromperson, action: row.raction, content: row.description,
+  //               sdate: row.sdate},
+  //             }).then(function (response) {
+  //               if(response.data.message == "updated"){
+  //               //alert("Record updated successfully");
+  //               alert("Record updated successfully");
+  //               }
+  //             })
+  //       };  
 
 
 // Function to add records
@@ -183,21 +183,21 @@ $scope.records = {};
   
 //Retrieve users  
 //<!--===============================================================================================-->
-  $scope.persons = {};
-  $http({
-        method: "POST",
-        url: "../php/persons.php",
-        }).then(function (response) {
-        $scope.persons = response.data;
-        $scope.vm = {};
-    		$scope.vm.dtOptions = DTOptionsBuilder.newOptions()
-        		.withOption('order', [0, 'desc'])
-            .withOption('hasBootstrap', true)
-            .withPaginationType('full_numbers')
-            .withOption('saveState', false)
-            .withOption('lengthChange',false)
-            .withOption('destroy',true)
-      });
+  // $scope.persons = {};
+  // $http({
+  //       method: "POST",
+  //       url: "../php/persons.php",
+  //       }).then(function (response) {
+  //       $scope.persons = response.data;
+  //       $scope.vm = {};
+  //   		$scope.vm.dtOptions = DTOptionsBuilder.newOptions()
+  //       		.withOption('order', [0, 'desc'])
+  //           .withOption('hasBootstrap', true)
+  //           .withPaginationType('full_numbers')
+  //           .withOption('saveState', false)
+  //           .withOption('lengthChange',false)
+  //           .withOption('destroy',true)
+  //     });
       
       
 // Function to add user  
@@ -255,54 +255,7 @@ $scope.records = {};
             }
           });
   }
-  
-  
-// Remove record
-//<!--===============================================================================================-->
- $scope.removeItem = function(index,recid)
- {
-  if (confirm('Are you sure you want to delete this?'))
-  {
-    $http({
-     method: 'post',
-     url: '../php/main.php',
-     headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},
-        transformRequest: function(obj) {
-          var str = [];
-          for(var p in obj)
-          str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-          return str.join("&");
-      },
-     data: {id:recid,request_type:3},
-    }).then(function successCallback(response) {
-     $scope.records.splice(index,1);
-    });
-  }
- }
 
-
-// Remove users
-//<!--===============================================================================================-->
-$scope.removePerson = function(index,recid)
- {
-  if (confirm('Are you sure you want to delete this?'))
-  {
-    $http({
-     method: 'post',
-     url: '../php/main.php',
-     headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},
-        transformRequest: function(obj) {
-          var str = [];
-          for(var p in obj)
-          str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-          return str.join("&");
-      },
-     data: {id:recid,request_type:2},
-    }).then(function successCallback(response) {
-     $scope.persons.splice(index,1);
-    });
-  }
- }
  
 // Logout user function
 //<!--===============================================================================================--> 
@@ -333,5 +286,115 @@ app.controller("locationCtrl", function($scope,$location){
   $scope.goToAddUser = function(){
     $location.path("/addUser");
   }
+});
+
+app.filter('beginning_data', function() {
+    return function(input, begin) {
+        if (input) {
+            begin = +begin;
+            return input.slice(begin);
+        }
+        return [];
+    }
+});
+app.controller('controller', function($scope, $http, $timeout) {
+$scope.file = [];
+  $http({
+     method: 'get',
+     url: 'php/records.php'}).then(function(user_data) {
+        $scope.file = user_data.data;
+        console.log($scope.file);
+        console.log($scope.file.length);
+        $scope.current_grid = 1;
+        $scope.data_limit = 10;
+        $scope.filter_data = $scope.file.length;
+        $scope.entire_user = $scope.file.length;
+    });
+    $scope.page_position = function(page_number) {
+        $scope.current_grid = page_number;
+    };
+    $scope.filter = function() {
+        $timeout(function() {
+            $scope.filter_data = $scope.searched.length;
+        }, 20);
+    };
+    $scope.sort_with = function(base) {
+        $scope.base = base;
+        $scope.reverse = !$scope.reverse;
+    };
+    
+    $scope.editingData = {};
+        for (var i = 0, length = $scope.file.length; i < length; i++) {
+          $scope.editingData[$scope.records[i].id] = false;
+        }
+        
+        $scope.modify = function(row){
+            $scope.editingData[row.id] = true;
+        };
+        
+        $scope.update = function(row){
+            $scope.editingData[row.id] = false;
+            $http({
+                method: "POST",
+                url: "php/update.php",
+                headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},
+                transformRequest: function(obj) {
+                  var str = [];
+                  for(var p in obj)
+                  str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                  return str.join("&");
+              },
+              data: {id: row.id, sender: row.fromperson, action: row.raction, content: row.description,
+                sdate: row.sdate},
+              }).then(function (response) {
+                if(response.data.message == "updated"){
+                alert("Record updated successfully");
+                }
+              })
+        };
+        
+        // Remove record
+//<!--===============================================================================================-->
+       $scope.removeItem = function(index,recid){
+        if (confirm('Are you sure you want to delete this?')){
+          $http({
+           method: 'post',
+           url: 'php/main.php',
+           headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},
+              transformRequest: function(obj) {
+                var str = [];
+                for(var p in obj)
+                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                return str.join("&");
+            },
+           data: {id:recid,request_type:3},
+           }).then(function successCallback(response) {
+           $scope.file.splice(index,1);
+           });
+         }
+       };
+
+// Remove users
+//<!--===============================================================================================-->
+$scope.removePerson = function(index,recid)
+ {
+  if (confirm('Are you sure you want to delete this?'))
+  {
+    $http({
+     method: 'post',
+     url: 'php/main.php',
+     headers:{'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'},
+        transformRequest: function(obj) {
+          var str = [];
+          for(var p in obj)
+          str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+          return str.join("&");
+      },
+     data: {id:recid,request_type:2},
+    }).then(function successCallback(response) {
+     $scope.persons.splice(index,1);
+    });
+  }
+ }
 });
 

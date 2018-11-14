@@ -69,65 +69,77 @@
       
     </div>
   </div>
-    <div class ="container main-container">
-    <table datatable="ng" dt-options="vm.dtOptions" class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Sender</th> 
-          <th>Contents</th>
-          <th>Actions </th>
-          <th>Logged by</th>
-          <th>Reciceved date</th>
-          <th ng-hide={{showAddUser}}>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="row in records">
-          <td>
-           <div>{{row.id}}</div>
-          </td>
-          <td>
-            <div ng-hide="editingData[row.id]">{{row.fromperson}}</div>
-            <div ng-show="editingData[row.id]"><input class= "form-control" type="text" ng-model="row.fromperson" /></div>
-          </td>
-          
-          <td>
-            <div ng-hide="editingData[row.id]">{{row.description}}</div>
-            <div ng-show="editingData[row.id]"><input class= "form-control" type="text" ng-model="row.description" /></div>
-          </td>
-          
-          <td>
-            <div ng-hide="editingData[row.id]">{{row.raction}}</div>
-            <div ng-show="editingData[row.id]"><input class= "form-control" type="text" ng-model="row.raction" /></div>
-          </td>
-          
-          <td>
-            <div ng-hide="editingData[row.id]">{{row.loggedby}}</div>
-            <div ng-show="editingData[row.id]"><input class= "form-control" type="text" ng-model="row.loggedby" /></div>
-          </td>
-            
-          <td>
-            <div ng-hide="editingData[row.id]">{{row.sdate}}</div>
-            <div ng-show="editingData[row.id]"><input class= "form-control" type="text" ng-model="row.sdate" /></div>
-          </td>
-          
-          <td ng-hide={{showAddUser}}>
-            <button type="button" ng-click="removeItem($index,row.id)" class="btn btn-sm btn-danger">
-  					<i class="glyphicon glyphicon-trash"></i>
-  					<button ng-hide="editingData[row.id]" ng-click="modify(row)" class="btn btn-sm btn-success">
-  					<i class="glyphicon glyphicon-edit"></i>
-  					<button ng-show="editingData[row.id]" ng-click="update(row)" class="btn btn-sm btn-success">
-  					<i class="glyphicon glyphicon-ok"></i>
-  				 </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div ng-controller="controller">
+        <div class="container">
+            <br/>
+            <h3 align="center">AngularJS Sorting, Searching and Pagination of Data Table using PHP & MySQL</a></h3>
+            <br/>
+            <div class="row">
+                <div class="col-sm-2 pull-left">
+                    <label>PageSize:</label>
+                    <select ng-model="data_limit" class="form-control">
+                        <option>10</option>
+                        <option>20</option>
+                        <option>50</option>
+                        <option>100</option>
+                    </select>
+                </div>
+                <div class="col-sm-6 pull-right">
+                    <label>Search:</label>
+                    <input type="text" ng-model="search" ng-change="filter()" placeholder="Search" class="form-control" />
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-md-12" ng-show="filter_data > 0">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                            <th>Sender&nbsp;<a ng-click="sort_with('name');"><i class="glyphicon glyphicon-sort"></i></a></th>
+                            <th>Contents&nbsp;<a ng-click="sort_with('gender');"><i class="glyphicon glyphicon-sort"></i></a></th>
+                            <th>Actions&nbsp;<a ng-click="sort_with('age');"><i class="glyphicon glyphicon-sort"></i></a></th>
+                            <th>Logged by&nbsp;<a ng-click="sort_with('email');"><i class="glyphicon glyphicon-sort"></i></a></th>
+                            <th>Recieved date&nbsp;<a ng-click="sort_with('phone');"><i class="glyphicon glyphicon-sort"></i></a></th>
+                            <th ng-hide={{showAddUser}}>Action</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="data in searched = (file | filter:search | orderBy : base :reverse) | beginning_data:(current_grid-1)*data_limit | limitTo:data_limit">
+                                <td><div ng-hide="editingData[data.id]">{{data.fromperson}}</div><div ng-show="editingData[data.id]"><input class= "form-control" type="text" ng-model="data.fromperson" /></div></td>
+                                <td><div ng-hide="editingData[data.id]">{{data.description}}</div><div ng-show="editingData[data.id]"><input class= "form-control" type="text" ng-model="data.description" /></div></td>
+                                <td><div ng-hide="editingData[data.id]">{{data.raction}}</div><div ng-show="editingData[data.id]"><input class= "form-control" type="text" ng-model="data.raction" /></div></td>
+                                <td><div ng-hide="editingData[data.id]">{{data.loggedby}}</div><div ng-show="editingData[data.id]"><input class= "form-control" type="text" ng-model="data.loggedby" /></div></td>
+                                <td><div ng-hide="editingData[data.id]">{{data.sdate}}</div><div ng-show="editingData[data.id]"><input class= "form-control" type="text" ng-model="data.sdate" /></div></td>
+                                <td ng-hide={{showAddUser}}>
+                                  <button type="button" ng-click="removeItem($index,data.id)" class="btn btn-sm btn-danger">
+                        					<i class="glyphicon glyphicon-trash"></i>
+                        					<button ng-hide="editingData[data.id]" ng-click="modify(data)" class="btn btn-sm btn-success">
+                        					<i class="glyphicon glyphicon-edit"></i>
+                        					<button ng-show="editingData[data.id]" ng-click="update(data)" class="btn btn-sm btn-success">
+                        					<i class="glyphicon glyphicon-ok"></i>
+                        				 </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-12" ng-show="filter_data == 0">
+                    <div class="col-md-12">
+                        <h4>No records found..</h4>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-6 pull-left">
+                        <h5>Total entires are : {{ entire_user}} entries</h5>
+                    </div>
+                    <div class="col-md-6" ng-show="filter_data > 0">
+                        <div pagination="" page="current_grid" on-select-page="page_position(page)" boundary-links="true" total-items="filter_data" items-per-page="data_limit" class="pagination-small pull-right" previous-text="&laquo;" next-text="&raquo;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <footer id="app-footer" class="footer ng-scope">
  	<div class="container">
- 		<div class="row">
+ 		<div class="data">
  			<div class="container-fluid">
 		 		<nav class="navbar">
 				    <ul class="nav">
