@@ -2,8 +2,8 @@
     <div class="container">
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li class="home"><a href="" ng-click="goDashboard();" ng-controller="locationCtrl"><img src="/assets/icons/home-btn.png"></img></a></li>
-                <li class="lgout"><a href="" ng-click="logout_user();" target="_blank"><img src="/assets/icons/logout-btn-active.png"></a></li>
+                <li class="home"><a href="" ng-click="goDashboard();" ng-controller="locationCtrl"><img src="assets/icons/home-btn.png"></img></a></li>
+                <li class="lgout"><a href="" ng-click="logout_user();" target="_blank"><img src="assets/icons/logout-btn-active.png"></a></li>
             </ul>
         </div>
             <!--/.nav-collapse -->
@@ -12,7 +12,7 @@
     </br>
 <div class = 'container'>
     <div class="wrapper">
-      <div class="logo"><img src="/assets/pics/dashboard-logo.png"></img>
+      <div class="logo"><img src="assets/pics/dashboard-logo.png"></img>
       <div class="pull-right"><h3><strong>Hello,</strong> {{User}}</h3></div>
     </div>
     </div>
@@ -57,50 +57,59 @@
         </div>
     </div>
     </div>
-    
-    <div class ='container main-container'>
-    <table datatable="ng" dt-options="vm.dtOptions" class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th>Department</th> 
-          <th>Email Address</th>
-          <th>FullName </th>
-          <th>ID Number</th>
-          <th>Role</th>
-          <th ng-hide={{showAddUser}}>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="row in persons">
-          <td>
-            <div>{{row.department}}</div>
-          </td>
-          
-          <td>
-            <div>{{row.emailAddress}}</div>
-          </td>
-          
-          <td>
-            <div>{{row.fullName}}</div>
-          </td>
+    <div>
+        <div class="container">
+            <br/>
+            <h3 align="center">Office of the Campus Registrar Graduate Studies and Research</a></h3>
+            <br/>
             
-          <td>
-            <div>{{row.idNumber}}</div>
-          </td>
-          
-           <td>
-            <div>{{row.role}}</div>
-          </td>
-          
-          <td ng-hide={{showAddUser}}>
-            <button type="button" ng-click="removePerson($index,row.id)" class="btn btn-sm btn-danger">
-  			    <i class="glyphicon glyphicon-trash"></i>
-  			</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    </div>
+           <div class="row">
+                <div class="col-md-12">
+                    <div class ='container main-container'>
+                        <table datatable="ng" dt-options="vm.dtOptions" class="table table-striped table-hover">
+                          <thead>
+                            <tr>
+                              <th>Department</th> 
+                              <th>Email Address</th>
+                              <th>FullName </th>
+                              <th>ID Number</th>
+                              <th>Role</th>
+                              <th ng-hide={{showAddUser}}>Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr ng-repeat="row in persons">
+                              <td>
+                                <div>{{row.department}}</div>
+                              </td>
+                              
+                              <td>
+                                <div>{{row.emailAddress}}</div>
+                              </td>
+                              
+                              <td>
+                                <div>{{row.fullName}}</div>
+                              </td>
+                                
+                              <td>
+                                <div>{{row.idNumber}}</div>
+                              </td>
+                              
+                               <td>
+                                <div>{{row.role}}</div>
+                              </td>
+                              
+                              <td ng-hide={{showAddUser}}>
+                                <button type="button" ng-click="removePerson($index,row.id)" class="btn btn-sm btn-danger">
+                      			    <i class="glyphicon glyphicon-trash"></i>
+                      			</button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
     <footer id="app-footer" class="footer ng-scope">
  	    <div class="container">
  		    <div class="row">

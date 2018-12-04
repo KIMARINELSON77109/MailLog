@@ -1,4 +1,5 @@
 <?php
+header("Access-Control-Allow-Origin: *");
 require "db_connect.php";
 require "sanitize.php";
 
@@ -15,23 +16,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
         
         if($res != null)
         {
-            $_SESSION["idNumber"] = $res["idNumber"];
-            $_SESSION["user_id"] = $res["id"];
+            $_SESSION["idNumber"] = $res["idnumber"];
             $_SESSION["role"] = $res["role"];
             $_SESSION["fullName"] = $res["fullName"];
+            $_SESSION['status'] = 'loggedin';
             if($_SESSION["role"]=="admin")
             {
-                $data= ['message' => 'admin', 'User' => $_SESSION["fullName"]];
+                $data= array('message' => 'admin', 'User' => $_SESSION["fullName"], 'Status'=>$_SESSION['status']);
             }
             else
             {
-                $data= ['message' => 'other'];
+                $data= array ('message' => 'other','User' => $_SESSION["fullName"], 'Status'=>$_SESSION['status']);
             }
           echo json_encode($data);
         }
         else
         {
-            $data= ['message' => 'No User Found'];
+            $data= array('message' => 'No User Found');
             echo json_encode($data);
         }
     }
@@ -46,30 +47,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
     if (isset($senderName) && isset($mailContent) && isset($action) && isset($sDate))
     {
 //##############################get id of sender################################
-        $emp_id = $_SESSION["user_id"];
+        $emp_id = $_SESSION["idnumber"];
         $senderName = ucwords($senderName);
         $mailContent = sentence_case($mailContent);
         $action = sentence_case($action);
         
-        //echo $emp_id;
         
 //###################get current date and time##################################
         $date_logged = date("Y-m-d h:i:s");
         
-        //get name of Employee
-        $stmt_2 = $db->query("SELECT * FROM Person WHERE id = '$emp_id'");
-        $res_ = $stmt_2->fetch();
-        $fullname = $res_["fullName"];
-        if($res_ != null)
+        $fullname = $_SESSION["fullName"];
+        if($fullname != null)
         {
             $sql = "INSERT INTO Maillog (description, fromperson, loggedby, raction, rdate, sdate ) VALUES('$mailContent','$senderName','$fullname','$action', '$date_logged','$sDate');";
             $db->exec($sql);
             
-            $data = ['message' => "success"];
+            $data = array('message' => "success");
         }
         else
         {
-            $data = ['message' => "fail"];
+            $data = array('message' => "fail");
         }
         echo json_encode($data);
     }

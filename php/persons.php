@@ -4,13 +4,10 @@ require "db_connect.php";
 
 session_start();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') 
+if ($_SERVER['REQUEST_METHOD'] === 'GET') 
 {
     
     //###############################get logged records from db ###################################
-    // $numOfRecord = $_POST["numRec"];
-    // if(isset($numOfRecord))
-    // {
             $sql1 = "SELECT * FROM Person ORDER BY id desc";
             $stmt = $db->query($sql1);
             $res = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -23,5 +20,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
                 {
                     echo json_encode($res);
                 }
-    //}
 }

@@ -30,16 +30,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST')
             
             if($res_ == true)
             {
-                $data= ['message' => true];
+                $data= array('message' => true);
             }
             else
             {
-                $data= ['message' => 'Something went Wrong'];
+                $data= array('message' => 'Something went Wrong');
             }
         }
         else
         {
-            $data= ['message' => "duplicate"];
+            $data= array('message' => "duplicate");
         }
         echo json_encode($data);
     }

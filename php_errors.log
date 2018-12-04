@@ -173,3 +173,66 @@
 [14-Nov-2018 02:09:37 UTC] PHP Fatal error:  require(): Failed opening required 'db_connect' (include_path='.:/usr/share/php:/usr/share/pear') in /home/ubuntu/workspace/php/fetch.php on line 2
 [14-Nov-2018 02:09:37 UTC] PHP Stack trace:
 [14-Nov-2018 02:09:37 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/fetch.php:0
+[14-Nov-2018 03:44:34 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 72 bytes) in /home/ubuntu/workspace/php/records.php on line 16
+[14-Nov-2018 03:44:34 UTC] PHP Stack trace:
+[14-Nov-2018 03:44:34 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/records.php:0
+[14-Nov-2018 03:44:34 UTC] PHP   2. PDOStatement->fetchAll() /home/ubuntu/workspace/php/records.php:16
+[14-Nov-2018 05:29:40 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 32 bytes) in /home/ubuntu/workspace/php/records.php on line 16
+[14-Nov-2018 05:29:40 UTC] PHP Stack trace:
+[14-Nov-2018 05:29:40 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/records.php:0
+[14-Nov-2018 05:29:40 UTC] PHP   2. PDOStatement->fetchAll() /home/ubuntu/workspace/php/records.php:16
+[14-Nov-2018 05:31:51 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 20 bytes) in /home/ubuntu/workspace/php/records.php on line 16
+[14-Nov-2018 05:31:51 UTC] PHP Stack trace:
+[14-Nov-2018 05:31:51 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/records.php:0
+[14-Nov-2018 05:31:51 UTC] PHP   2. PDOStatement->fetchAll() /home/ubuntu/workspace/php/records.php:16
+[14-Nov-2018 05:32:19 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 20 bytes) in /home/ubuntu/workspace/php/records.php on line 16
+[14-Nov-2018 05:32:19 UTC] PHP Stack trace:
+[14-Nov-2018 05:32:19 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/records.php:0
+[14-Nov-2018 05:32:19 UTC] PHP   2. PDOStatement->fetchAll() /home/ubuntu/workspace/php/records.php:16
+[14-Nov-2018 05:33:31 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 20 bytes) in /home/ubuntu/workspace/php/records.php on line 16
+[14-Nov-2018 05:33:31 UTC] PHP Stack trace:
+[14-Nov-2018 05:33:31 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/records.php:0
+[14-Nov-2018 05:33:31 UTC] PHP   2. PDOStatement->fetchAll() /home/ubuntu/workspace/php/records.php:16
+[14-Nov-2018 05:37:29 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 20 bytes) in /home/ubuntu/workspace/php/records.php on line 16
+[14-Nov-2018 05:37:29 UTC] PHP Stack trace:
+[14-Nov-2018 05:37:29 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/records.php:0
+[14-Nov-2018 05:37:29 UTC] PHP   2. PDOStatement->fetchAll() /home/ubuntu/workspace/php/records.php:16
+[14-Nov-2018 05:38:06 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 20 bytes) in /home/ubuntu/workspace/php/records.php on line 16
+[14-Nov-2018 05:38:06 UTC] PHP Stack trace:
+[14-Nov-2018 05:38:06 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/records.php:0
+[14-Nov-2018 05:38:06 UTC] PHP   2. PDOStatement->fetchAll() /home/ubuntu/workspace/php/records.php:16
+[14-Nov-2018 05:38:56 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 12582899 bytes) in /home/ubuntu/workspace/php/records.php on line 24
+[14-Nov-2018 05:38:56 UTC] PHP Stack trace:
+[14-Nov-2018 05:38:56 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/records.php:0
+[14-Nov-2018 05:38:56 UTC] PHP   2. json_encode() /home/ubuntu/workspace/php/records.php:24
+[14-Nov-2018 05:39:11 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 11598544 bytes) in /home/ubuntu/workspace/php/records.php on line 24
+[14-Nov-2018 05:39:11 UTC] PHP Stack trace:
+[14-Nov-2018 05:39:11 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/records.php:0
+[14-Nov-2018 05:39:11 UTC] PHP   2. json_encode() /home/ubuntu/workspace/php/records.php:24
+[19-Nov-2018 21:25:59 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 72 bytes) in /home/ubuntu/workspace/php/records.php on line 17
+[19-Nov-2018 21:25:59 UTC] PHP Stack trace:
+[19-Nov-2018 21:25:59 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/records.php:0
+[19-Nov-2018 21:25:59 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 72 bytes) in /home/ubuntu/workspace/php/records.php on line 17
+[19-Nov-2018 21:25:59 UTC] PHP Stack trace:
+[19-Nov-2018 21:25:59 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/records.php:0
+[19-Nov-2018 21:26:38 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 72 bytes) in /home/ubuntu/workspace/php/records.php on line 17
+[19-Nov-2018 21:26:38 UTC] PHP Stack trace:
+[19-Nov-2018 21:26:38 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/records.php:0
+[19-Nov-2018 21:26:38 UTC] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 72 bytes) in /home/ubuntu/workspace/php/records.php on line 17
+[19-Nov-2018 21:26:38 UTC] PHP Stack trace:
+[19-Nov-2018 21:26:38 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/records.php:0
+[04-Dec-2018 20:01:18 UTC] PHP Fatal error:  Call to a member function query() on a non-object in /home/ubuntu/workspace/php/records.php on line 13
+[04-Dec-2018 20:01:18 UTC] PHP Stack trace:
+[04-Dec-2018 20:01:18 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/records.php:0
+[04-Dec-2018 20:01:18 UTC] PHP Fatal error:  Call to a member function query() on a non-object in /home/ubuntu/workspace/php/persons.php on line 12
+[04-Dec-2018 20:01:18 UTC] PHP Stack trace:
+[04-Dec-2018 20:01:18 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/persons.php:0
+[04-Dec-2018 20:01:18 UTC] PHP Fatal error:  Call to a member function query() on a non-object in /home/ubuntu/workspace/php/records.php on line 13
+[04-Dec-2018 20:01:18 UTC] PHP Stack trace:
+[04-Dec-2018 20:01:18 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/records.php:0
+[04-Dec-2018 20:01:18 UTC] PHP Fatal error:  Call to a member function query() on a non-object in /home/ubuntu/workspace/php/persons.php on line 12
+[04-Dec-2018 20:01:18 UTC] PHP Stack trace:
+[04-Dec-2018 20:01:18 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/persons.php:0
+[04-Dec-2018 20:01:29 UTC] PHP Fatal error:  Call to a member function query() on a non-object in /home/ubuntu/workspace/php/main.php on line 14
+[04-Dec-2018 20:01:29 UTC] PHP Stack trace:
+[04-Dec-2018 20:01:29 UTC] PHP   1. {main}() /home/ubuntu/workspace/php/main.php:0
