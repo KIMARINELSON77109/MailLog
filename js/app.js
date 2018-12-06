@@ -1,19 +1,26 @@
 var app = angular.module("mailLog", ["ngRoute","ui.bootstrap","datatables","datatables.bootstrap"]);
 
-app.config(function($routeProvider, $locationProvider) {
+app.config(function($routeProvider, $locationProvider) 
+{
     $routeProvider
-    .when("/", {
+    .when("/", 
+    {
         templateUrl : "templates/login.html",
         controller: 'recordCtrl'
     })
-    .when("/addRecord", {
+    .when("/addRecord", 
+    {
         templateUrl : "templates/addRecord.html",
         controller: 'recordCtrl'
     })
-    .when("/dashboard", {
-      resolve: {
-			check: function($location, user) {
-				if(!user.isUserLoggedIn()) {
+    .when("/dashboard", 
+    {
+      resolve: 
+      {
+      check: function($location, user) 
+      {
+        if(!user.isUserLoggedIn()) 
+        {
 					$location.path('/');
 				}
 			},
@@ -21,10 +28,14 @@ app.config(function($routeProvider, $locationProvider) {
         templateUrl : "templates/dashboard.html",
         controller: 'recordCtrl'
     })
-    .when("/addUser", {
-      resolve: {
-        check: function($location, user) {
-          if(!user.isUserLoggedIn()) {
+    .when("/addUser", 
+    {
+      resolve: 
+      {
+        check: function($location, user) 
+        {
+          if(!user.isUserLoggedIn()) 
+          {
             $location.path('/');
           }
         },
@@ -32,32 +43,48 @@ app.config(function($routeProvider, $locationProvider) {
         templateUrl : "templates/addUser.html",
         controller: 'recordCtrl'
     })
-    .when("/logout",{
-        resolve: {
-  			deadResolve: function($location, user) {
+    .when("/logout",
+    {
+        resolve: 
+        {
+        deadResolve: function($location, user) 
+        {
   				user.clearData();
   				$location.path('/');
   			}
   		}
     })
-    .otherwise({
+    .otherwise(
+      {
       templates: '404'
-    });
+      });
     
-    //$locationProvider.html5Mode(true);
-    // $locationProvider.html5Mode({
-    //   enabled: true,
-    //   requireBase: false
-    // });
+    $locationProvider.html5Mode(true);
 });
 
-app.service('user', function() {
+/*
+* This service is used check if user is loggedin, it saves the loggedin User info and remove user info from
+* from local storage.
+
+* @ isUserLoggedin - Check if the is an item in local storage which would be 
+* user info and if so extract the user information and return that the user is loggedin based on the value 
+* stored in "Loggedin".
+*
+* @ saveData - This function saves the user data coming from the server and stores
+*   it in a local storage varaible "login".  
+
+* @ clearData - This function removes the user data stored in the local storage and set the 
+* the Loggedin variable value to false. 
+*/
+app.service('user', function() 
+{
   var User;
 	var loggedin = false;
 	var id;
   
   this.isUserLoggedIn = function() {
-		if(!!localStorage.getItem('login')) {
+    if(!!localStorage.getItem('login')) 
+    {
 			loggedin = true;
 			var data = JSON.parse(localStorage.getItem('login'));
 			User = data.User;
@@ -66,7 +93,8 @@ app.service('user', function() {
 		return loggedin;
 	};
 
-	this.saveData = function(data) {
+  this.saveData = function(data)
+  {
 		User = data.User;
 		id = data.id;
 		loggedin = true;
@@ -76,16 +104,24 @@ app.service('user', function() {
 		}));
 	};
 	
-	this.clearData = function() {
-	localStorage.removeItem('login');
-	loggedin = false;
+  this.clearData = function() 
+  {
+    localStorage.removeItem('login');
+    loggedin = false;
 	}
 });
+
 app.controller("recordCtrl", function($scope, $http, $location, $timeout,DTOptionsBuilder,user){
 
+/*
+* The login function is called when the login form is submitted, data from the form it sent using a post
+* request to a service which checks the authenication of the user based on the credential in form.
+* if the authenication was valid a second post request is sent to the server to query the database for that
+* user if server responded with a message contain true then save there user info and navigate user to dashboard otherwise
+* remain on login page.
 
-//Login Function
-//<!--===============================================================================================-->
+* if the post request was not successful remian to login page.
+*/
   $scope.log_in = {};
   $scope.showAddUser = localStorage.getItem('showAdduser') || false;
   $scope.User = sessionStorage.getItem('user') || '';
@@ -119,18 +155,17 @@ app.controller("recordCtrl", function($scope, $http, $location, $timeout,DTOptio
                 data: {idnumber: $scope.log_in.idnumber}
             }).then(function(response)
             {
-              console.log(response.data);
-               sessionStorage.setItem('user', response.data.User);
-              console.log($scope.user);
+              sessionStorage.setItem('user', response.data.User);
               if(response.data.message == "admin" && response.data.Status == 'loggedin')
               {
                 localStorage.setItem('showAdduser', 'false');
                 user.saveData(response.data);
                 $location.path("/dashboard");
               }
-              else if (response.data.message == "other")
+              else if (response.data.message != "admin" && response.data.Status == 'loggedin')
               {
                 localStorage.setItem('showAdduser', 'true');
+                user.saveData(response.data);
                 $location.path("/dashboard");
               }
               else
@@ -141,7 +176,6 @@ app.controller("recordCtrl", function($scope, $http, $location, $timeout,DTOptio
           }
           else
           {
-            $scope.loginval = false;
             $location.path("/");
           }
     });
@@ -153,7 +187,7 @@ $scope.file = [];
      url: 'php/records.php'}).then(function(user_data) {
         $scope.file = user_data.data;
         $scope.current_grid = 1;
-        $scope.data_limit = 50;
+        $scope.data_limit = 1000;
         $scope.filter_data = $scope.file.length;
         $scope.entire_user = $scope.file.length;
     });
@@ -163,7 +197,7 @@ $scope.file = [];
     $scope.filter = function() {
         $timeout(function() {
             $scope.filter_data = $scope.searched.length;
-        }, 5);
+        }, 50);
     };
     $scope.sort_with = function(base) {
         $scope.base = base;

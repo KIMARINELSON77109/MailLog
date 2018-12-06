@@ -1,3 +1,4 @@
+<script>$( function() {$("#datepicker" ).datepicker();});</script>
  <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="collapse navbar-collapse">
@@ -51,10 +52,11 @@
               <label for="action">Action:</label><br>
               <input type="text" ng-model="insert_d.action" id="action" class="form-control input-lg" required/>
             </div>
-                
+        
             <div class="form-group">
               <label for="date-rec">Date Received:</label><br>
-              <input type="text" ng-model="insert_d.sdate" class="form-control input-lg" placeholder="YYYY-MM-DD" required/>
+              <!--<input type="text" ng-model="insert_d.sdate" class="form-control input-lg" placeholder="YYYY-MM-DD" required/>-->
+              <input type="text" id="datepicker" class="form-control input-lg" ng-model="insert_d.sdate"/>
             </div>
                 
             <div class="add-btn">
@@ -131,7 +133,7 @@
                     </div>
                 <div>
                    <div ng-show="filter_data > 0">
-                        <div class="pagination" pagination="" page="current_grid" on-select-page="page_position(page)" boundary-links="true" total-items="filter_data" items-per-page="data_limit" class="pagination-small pull-right" previous-text="&laquo;" next-text="&raquo;"></div>
+                        <div pagination="5" page="current_grid" on-select-page="page_position(page)" boundary-links="true" total-items="filter_data" items-per-page="data_limit" class="pagination-small pull-right" previous-text="&laquo;" next-text="&raquo;"></div>
                         <!--<div class="paginations" data-limit="10" data-offsset="0", data-total="10000"></div>-->
                     </div>
                 </div>
@@ -145,7 +147,9 @@
  			<div class="container-fluid">
 		 		<nav class="navbar">
 				    <ul class="nav">
-			            <li class="navbar-text pull-right"><a id="feedback-btn" ui-sref="feedback" href="/feedback">Send Feedback</a></li>
+				      <div class ="claimer">© 2011 The University of the West Indies. All rights reserved. <a href="http://www.mona.uwi.edu/monafiles/policy/disclaim.htm">Disclaimer</a>
+                    | <a href ="http://www.mona.uwi.edu/monafiles/policy/privacy.htm">Privacy Statement</a>
+              </div>
 			        </ul>
 				</nav> 				
  			</div>
